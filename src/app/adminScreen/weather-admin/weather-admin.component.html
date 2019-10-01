@@ -1,0 +1,47 @@
+<div class="col-xs-12 col-md-6 col-md-offset-3">
+  <div>
+    <h3>Weather Feed by OpenWeather</h3>
+    <form [formGroup]="APIKeyForm" (ngSubmit)="onSaveAPIKey()">
+      <div class="form-group">
+        <label for="APIKey">API Key</label>
+        <input
+          type="text"
+          id="APIKey"
+          formControlName="APIKey"
+          class="form-control">
+      </div>
+      <button class="btn btn-primary" type="submit">Save Key</button>
+    </form>
+  </div>
+  <br>
+  <div *ngIf="this.weatherService.APIKey">
+    <form [formGroup]="weatherReqForm" (ngSubmit)="onCheckWeather()">
+      <label for="city">City name</label>
+      <div class="form-row">
+        <div class="form-group">
+          <input
+            type="text"
+            id="city"
+            formControlName="city"
+            class="form-control">
+        </div>
+        <div class="form-group">
+          <select formControlName="isMetric" id="isMetric" class="form-control" id="isMetric">
+            <option [ngValue]="true">°C</option>
+            <option [ngValue]="false">°F</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <button class="btn btn-primary" type="submit">Show Weather</button>
+      </div>
+    </form>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+    <p>Error has occurred: {{errorMessage}}</p>
+  </div>
+</div>
+
+
+
