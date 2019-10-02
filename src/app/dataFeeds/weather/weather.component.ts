@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {WeatherService} from '../../shared/weather.service';
-import {Weather} from '../../shared/weather';
+import {WeatherService} from '../../shared/weather/weather.service';
+import {Weather} from '../../shared/weather/weather';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription, timer} from 'rxjs';
 

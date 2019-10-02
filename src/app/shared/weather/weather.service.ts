@@ -13,7 +13,7 @@ import {Subject, Subscription, throwError, timer} from 'rxjs';
  */
 export class WeatherService implements OnInit, OnDestroy {
   /*
-  TODO: add instructions
+  TODO: maybe add instructions
    */
   private _APIKey: string = "";
   weatherSubject = new Subject<{weather: Weather, isMetric: boolean}>();

@@ -1,0 +1,8 @@
+<div>
+  <div *ngFor="let article of articlesToDisplay">
+    <h3>{{article.title}}</h3>
+    <p>{{article.description}}</p>
+    <p>Published {{article.publishedAt}} by {{article.source.name}}</p>
+    <hr>
+  </div>
+</div>

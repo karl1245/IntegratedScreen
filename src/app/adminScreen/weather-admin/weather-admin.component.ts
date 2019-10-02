@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {WeatherService} from '../../shared/weather.service';
+import {WeatherService} from '../../shared/weather/weather.service';
 import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
@@ -36,6 +36,7 @@ export class WeatherAdminComponent implements OnInit {
   onCheckWeather() {
     const city = this.weatherReqForm.value.city;
     const isMetric: boolean = this.weatherReqForm.value.isMetric;
+
     this.weatherService.getWeather(city, isMetric).subscribe(weather => {
       this.errorMessage = null;
       this.weatherService.weatherSubject.next({weather: weather, isMetric: isMetric});
