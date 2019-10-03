@@ -2,7 +2,7 @@ import {Injectable, OnDestroy, OnInit} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 import {catchError, map, take} from 'rxjs/operators';
 import {Weather} from './weather';
-import {Subject, Subscription, throwError, timer} from 'rxjs';
+import {BehaviorSubject, Subject, Subscription, throwError, timer} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,20 +11,24 @@ import {Subject, Subscription, throwError, timer} from 'rxjs';
  * Uses OpenWeather API.
  * https://openweathermap.org/
  */
-export class WeatherService implements OnInit, OnDestroy {
+export class WeatherService {
   /*
   TODO: maybe add instructions
    */
   private _APIKey: string = "";
-  weatherSubject = new Subject<{weather: Weather, isMetric: boolean}>();
-  errorSubject = new Subject<string>()
+  weatherSubject = new BehaviorSubject<{weather: Weather, isMetric: boolean}>(null);
+  errorSubject = new BehaviorSubject<string>(null);
   updateTimer: Subscription;
 
   // TODO: maybe take them from local storage
   currentCity: string = "Tallinn";
   isMetric = true;
 
-  constructor (private http: HttpClient) { }
+  constructor (private http: HttpClient) {
+    this.updateTimer = timer(0, 900000).subscribe(() => {
+      this.getWeather(this.currentCity, this.isMetric);
+    });
+  }
 
   set APIKey(value: string) {
     this._APIKey = value;
@@ -34,11 +38,6 @@ export class WeatherService implements OnInit, OnDestroy {
     return this._APIKey;
   }
 
-  ngOnInit() {
-    this.updateTimer = timer(0, 900000).subscribe(() => {
-      this.getWeather(this.currentCity, this.isMetric);
-    });
-  }
 
   /**
    * Returns the http request for the weather request.
@@ -62,10 +61,4 @@ export class WeatherService implements OnInit, OnDestroy {
       take(1)
     );
   }
-
-  ngOnDestroy() {
-    this.updateTimer.unsubscribe();
-  }
-
-
 }

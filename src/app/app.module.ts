@@ -5,13 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-import { WeatherComponent } from './dataFeeds/weather/weather.component';
+import { WeatherComponent } from './data-feeds/weather-feed/weather.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { WeatherAdminComponent } from './adminScreen/weather-admin/weather-admin.component';
-import { NewsComponent } from './dataFeeds/news/news.component';
-import { NewsAdminComponent } from './adminScreen/news-admin/news-admin.component';
+import { WeatherAdminComponent } from './admin-screen/weather-admin/weather-admin.component';
+import { NewsComponent } from './data-feeds/news-feed/news.component';
+import { NewsAdminComponent } from './admin-screen/news-admin/news-admin.component';
 import { CountryNamePipe } from './shared/country-name.pipe';
+import { AdminScreenComponent } from './admin-screen/admin-screen.component';
+import { DataFeedsComponent } from './data-feeds/data-feeds.component';
+import { HeaderComponent } from './admin-screen/header/header.component';
+import {NewsService} from './shared/news/news.service';
+import {WeatherService} from './shared/weather/weather.service';
 
 
 @NgModule({
@@ -21,7 +26,10 @@ import { CountryNamePipe } from './shared/country-name.pipe';
     WeatherAdminComponent,
     NewsComponent,
     NewsAdminComponent,
-    CountryNamePipe
+    CountryNamePipe,
+    AdminScreenComponent,
+    DataFeedsComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +39,10 @@ import { CountryNamePipe } from './shared/country-name.pipe';
     ReactiveFormsModule,
     NgxYoutubePlayerModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    NewsService,
+    WeatherService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

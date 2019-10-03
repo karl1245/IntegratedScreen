@@ -16,6 +16,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.newsSub = this.newsService.newsSubject.subscribe(articles => {
+      console.log(articles);
       this.articlesToDisplay = articles;
     });
   }
@@ -23,7 +24,4 @@ export class NewsComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.newsSub.unsubscribe();
   }
-
-
-
 }

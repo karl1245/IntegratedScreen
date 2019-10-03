@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {take} from 'rxjs/operators';
 import {Article} from './article';
 import {NewsSource} from './news-source';
-import {Subject, Subscription, timer} from 'rxjs';
+import {BehaviorSubject, Subject, Subscription, timer} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,19 +12,17 @@ import {Subject, Subscription, timer} from 'rxjs';
  * Uses NewsSource API
  * https://newsapi.org/
  */
-export class NewsService implements OnInit{
+export class NewsService {
   private _APIKey: string = "";
-  newsSubject = new Subject<Article[]>();
-  errorSubject = new Subject<string>();
+  newsSubject = new BehaviorSubject<Article[]>([]);
+  errorSubject = new BehaviorSubject<string>(null);
   updateTimer: Subscription;
 
   // TODO: take them from storage
   currentSources: string[] = [];
   currentKeyword = "";
 
-  constructor (private http: HttpClient) {}
-
-  ngOnInit() {
+  constructor (private http: HttpClient) {
     this.updateTimer = timer(0, 900000).subscribe(() => {
       this.getNewsBySources(this.currentSources, this.currentKeyword);
     });

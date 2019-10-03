@@ -24,10 +24,12 @@ export class WeatherComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.weatherSub = this.weatherService.weatherSubject.subscribe(response => {
-      this.weather = response.weather;
-      this.weatherImageLocation = "http://openweathermap.org/img/wn/" + this.weather.weather[0].icon + "@2x.png";
-      this.isMetric = response.isMetric;
-      this.city = response.weather.name
+      if (response) {
+        this.weather = response.weather;
+        this.weatherImageLocation = "http://openweathermap.org/img/wn/" + this.weather.weather[0].icon + "@2x.png";
+        this.isMetric = response.isMetric;
+        this.city = response.weather.name
+      }
     });
   }
 
