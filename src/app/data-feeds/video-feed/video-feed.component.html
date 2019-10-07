@@ -1,0 +1,17 @@
+<h2>Video</h2>
+<div class="container">
+  <div class="row">
+    <section class="card card-info text-white bg-dark mb-3">
+      <div class="card-header">E goverment</div>
+      <section class="card-img-top">
+        <youtube-player
+          [videoId]="id"
+          (ready)="savePlayer($event)"
+          (change)="onStateChange($event)"
+          [playerVars]="playerVars">
+        </youtube-player>
+      </section>
+      <div class="card-body"></div>
+    </section>
+  </div>
+</div>
