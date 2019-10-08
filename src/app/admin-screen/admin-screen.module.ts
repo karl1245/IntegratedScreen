@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CountryNamePipe} from '../shared/country-name.pipe';
+import { TransportAdminComponent } from './transport-admin/transport-admin.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {CountryNamePipe} from '../shared/country-name.pipe';
     NewsAdminComponent,
     AdminScreenComponent,
     VideoAdminComponent,
-    CountryNamePipe
+    CountryNamePipe,
+    TransportAdminComponent
   ],
   imports: [
     RouterModule,
@@ -26,7 +28,8 @@ import {CountryNamePipe} from '../shared/country-name.pipe';
     NewsAdminComponent,
     AdminScreenComponent,
     VideoAdminComponent,
-    CountryNamePipe
+    CountryNamePipe,
+    TransportAdminComponent
   ]
 })
 export class AdminScreenModule {

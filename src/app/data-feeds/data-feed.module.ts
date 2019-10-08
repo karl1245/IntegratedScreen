@@ -5,13 +5,15 @@ import {DataFeedsComponent} from './data-feeds.component';
 import { VideoFeedComponent } from './video-feed/video-feed.component';
 import {CommonModule} from '@angular/common';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
+import {TransportComponent} from  './transport-feed/transport.component';
 
 @NgModule({
   declarations: [
     WeatherComponent,
     NewsComponent,
     DataFeedsComponent,
-    VideoFeedComponent
+    VideoFeedComponent,
+    TransportComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
     NewsComponent,
     DataFeedsComponent,
     VideoFeedComponent,
-    NgxYoutubePlayerModule
+    NgxYoutubePlayerModule,
+    TransportComponent
   ]
 })
 export class DataFeedModule {

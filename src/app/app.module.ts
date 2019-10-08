@@ -10,6 +10,7 @@ import { NewsService } from './shared/news/news.service';
 import { WeatherService } from './shared/weather/weather.service';
 import { AdminScreenModule } from './admin-screen/admin-screen.module';
 import { DataFeedModule } from './data-feeds/data-feed.module';
+import { TransportService } from './shared/transport/transport.service';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { DataFeedModule } from './data-feeds/data-feed.module';
   ],
   providers: [
     NewsService,
-    WeatherService
+    WeatherService,
+    TransportService
   ],
   bootstrap: [AppComponent]
 })
