@@ -17,6 +17,9 @@
     </form>
   </div>
   <br>
+  <div *ngIf="errorMessage" class="alert-danger">
+    <p>Error has occured: {{errorMessage}}</p>
+  </div>
   <div>
     <h4>News by source and keyword</h4>
     <p class="font-italic mt-1 mb-1">At least one needs to be selected</p>

@@ -19,6 +19,8 @@ export class NewsAdminComponent implements OnInit {
 
   numberOfArticles = 0;
 
+  errorMessage: string;
+
   constructor(private newsService: NewsService) { }
 
   ngOnInit() {
@@ -28,6 +30,9 @@ export class NewsAdminComponent implements OnInit {
     });
     this.newsService.getNewsSources().subscribe(sources => {
       this.newsSources = sources.sources;
+    }, error1 => {
+      this.errorMessage = error1.error.message;
+      console.log(error1.error);
     });
     this.newsForm = new FormGroup({
       'newsSource': new FormControl(null),

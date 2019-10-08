@@ -24,8 +24,7 @@ import {TransportComponent} from  './transport-feed/transport.component';
     NewsComponent,
     DataFeedsComponent,
     VideoFeedComponent,
-    NgxYoutubePlayerModule,
-    TransportComponent
+    NgxYoutubePlayerModule
   ]
 })
 export class DataFeedModule {
