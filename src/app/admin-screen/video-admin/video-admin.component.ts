@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import { VideoService } from '../../shared/video/video.service';
 
 @Component({
   selector: 'app-video-admin',
@@ -9,15 +10,24 @@ import {FormControl, FormGroup} from '@angular/forms';
 export class VideoAdminComponent implements OnInit {
   videoLocation: string;
   videoForm: FormGroup;
+  
 
 
-  constructor() { }
+
+  constructor(private videoService: VideoService) { }
 
   ngOnInit() {
     this.videoLocation = "";
     this.videoForm = new FormGroup({
       'videoLocation': new FormControl(this.videoLocation)
     });
+    
+    
+    
+  }
+
+  onSaveVideo(){
+    this.videoService.changeMessage(this.videoForm.value.videoLocation)
   }
 
 }

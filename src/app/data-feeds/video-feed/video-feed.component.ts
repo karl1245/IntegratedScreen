@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Subscription, timer} from 'rxjs';
+import { VideoService } from '../../shared/video/video.service';
 
 @Component({
   selector: 'app-video-feed',
@@ -11,12 +13,16 @@ export class VideoFeedComponent implements OnInit {
   playerVars = {
     cc_lang_pref: 'en'
   };
+  videosub: Subscription;
+
   private player;
   private ytEvent;
 
-  constructor() { }
+  constructor(private videoService: VideoService) { }
 
   ngOnInit() {
+   this.videosub = this.videoService.currentMessage.subscribe(message => this.id = message)
+   
   }
 
   onStateChange(event) {
