@@ -6,6 +6,7 @@
   <div>
     <form [formGroup]="videoForm" (ngSubmit)="onSaveVideo()">
       <div class="form-group">
+        <p>Enter the video code (underlined part) <br> Example: https://www.youtube.com/watch?v=<u>MB80ZuIJATI</u></p>
         <label for="videoLocation">Video location</label>
         <input
           type="text"
