@@ -1,0 +1,96 @@
+/**
+  Based on: https://codepen.io/daanvankerkom/pen/bRbKEL
+*/
+
+.sidebar-container {
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.content-container {
+  padding-top: 20px;
+}
+
+.sidebar-logo {
+  padding: 10px 15px 10px 30px;
+  background-color: #66b245;
+
+}
+
+.sidebar-navigation {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+}
+
+.sidebar-navigation li {
+  background-color: transparent;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  line-height: 20px;
+}
+
+.sidebar-navigation li a {
+  padding: 10px 15px 10px 30px;
+  display: block;
+  color: #fff;
+}
+
+.sidebar-navigation li .fa {
+  margin-right: 10px;
+}
+
+
+.sidebar-navigation .header {
+  text-transform: uppercase;
+  background-color: #151515;
+  padding: 10px 15px 10px 30px;
+}
+
+.content-container {
+  padding-left: 220px;
+}
+
+
+.sidebar-navigation .active {
+  background-color: #66b245;
+  width: 100%;
+}
+
+
+
+
+img {
+  width: 10em;
+  height: auto;
+  padding: 1em;
+}
+
+mat-sidenav {
+  background-color: #151515;
+  height: 100%;
+  width: 200px;
+}
+
+mat-list-item {
+  color: white;
+}
+
+a {
+  color: #fff;
+}
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav, mat-sidenav-content {
+  padding: 16px;
+}

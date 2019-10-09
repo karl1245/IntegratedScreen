@@ -26,6 +26,7 @@
               "src/electron.prod.js"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
@@ -118,6 +119,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "IntegratedScreen"
 }

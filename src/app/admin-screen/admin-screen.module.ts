@@ -5,9 +5,11 @@ import {AdminScreenComponent} from './admin-screen.component';
 import { VideoAdminComponent } from './video-admin/video-admin.component';
 import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {CountryNamePipe} from '../shared/country-name.pipe';
 import { TransportAdminComponent } from './transport-admin/transport-admin.component';
+import {MaterialModule} from '../material/material.module';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { TransportAdminComponent } from './transport-admin/transport-admin.compo
     AdminScreenComponent,
     VideoAdminComponent,
     CountryNamePipe,
-    TransportAdminComponent
+    TransportAdminComponent,
+    SidenavComponent
   ],
   imports: [
     RouterModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   exports: [
     WeatherAdminComponent,
@@ -29,7 +33,8 @@ import { TransportAdminComponent } from './transport-admin/transport-admin.compo
     AdminScreenComponent,
     VideoAdminComponent,
     CountryNamePipe,
-    TransportAdminComponent
+    TransportAdminComponent,
+    SidenavComponent
   ]
 })
 export class AdminScreenModule {

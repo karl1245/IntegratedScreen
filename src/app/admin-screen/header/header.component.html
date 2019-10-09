@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default">
+<!--
+<nav class="nav flex-column">
   <div class="container-fluid">
     <div class="navbar-header">
       <a routerLinkActive="active" [routerLink]="['admin', 'news']" class="navbar-brand">News</a>
@@ -17,3 +18,66 @@
     </div>
   </div>
 </nav>
+-->
+
+<!--
+<nav class="sidebar-container">
+  <div>
+    <img style="height: auto; width: 8em" src="https://scoop4c.eu/sites/default/files/inline-images/partner-logo-EGA-web.png">
+  </div>
+  <div class="sidebar-logo h5">
+    Information Screen
+  </div>
+  <ul class="sidebar-navigation">
+    <li class="header">Feeds</li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="['/', 'admin', 'news']" class="navbar-brand">
+        <i class="fa fa-home" aria-hidden="true"></i> News
+      </a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="['/', 'admin', 'weather']" class="navbar-brand">
+        <i class="fa fa-tachometer" aria-hidden="true"></i> Weather
+      </a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="['/', 'admin', 'video']" class="navbar-brand">
+        <i class="fa fa-users" aria-hidden="true"></i> Video
+      </a>
+    </li>
+    <li>
+      <a routerLinkActive="active" [routerLink]="['/', 'admin', 'transport']" class="navbar-brand">
+        <i class="fa fa-users" aria-hidden="true"></i> Transport
+      </a>
+    </li>
+    <li class="header">TODO</li>
+    <li>
+      <a routerLink="/" class="navbar-brand">
+        <i class="fa fa-cog" aria-hidden="true"></i> Information Screen
+      </a>
+    </li>
+  </ul>
+</nav>
+-->
+
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/', 'admin', 'news']"> News </a>
+      <a mat-list-item [routerLink]="['/', 'admin', 'weather']"> Weather </a>
+      <a mat-list-item [routerLink]="['/', 'admin', 'video']"> Video </a>
+      <a mat-list-item [routerLink]="['/', 'admin', 'transport']"> Transport </a>
+
+      <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- TODO, header no longer needed, to be removed -->
+

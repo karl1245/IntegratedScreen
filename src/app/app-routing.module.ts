@@ -13,13 +13,13 @@ const routes: Routes = [
     path: 'admin',
     component: AdminScreenComponent,
     children: [
-      // TODO: something like this{path: '', component: InstructionScreen},
       {path: 'news', component: NewsAdminComponent},
       {path: 'weather', component: WeatherAdminComponent},
       {path: 'video', component: VideoAdminComponent},
       {path: 'transport', component: TransportAdminComponent}
     ]},
   {path: '', component: DataFeedsComponent},
+  {path: '**', redirectTo: ''} //TODO: maybe later direct to pageNotFound?
 ];
 
 @NgModule({

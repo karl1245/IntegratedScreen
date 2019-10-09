@@ -6,6 +6,7 @@ import { VideoFeedComponent } from './video-feed/video-feed.component';
 import {CommonModule} from '@angular/common';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 import {TransportComponent} from  './transport-feed/transport.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,8 +17,10 @@ import {TransportComponent} from  './transport-feed/transport.component';
     TransportComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
-    NgxYoutubePlayerModule.forRoot()
+    NgxYoutubePlayerModule.forRoot(),
+
   ],
   exports: [
     WeatherComponent,
