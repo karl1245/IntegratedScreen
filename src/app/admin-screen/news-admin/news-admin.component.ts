@@ -1,25 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NewsService} from '../../shared/news/news.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NewsSource} from '../../shared/news/news-source';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-news-admin',
   templateUrl: './news-admin.component.html',
   styleUrls: ['./news-admin.component.css']
 })
-export class NewsAdminComponent implements OnInit {
+export class NewsAdminComponent implements OnInit, OnDestroy {
   APIkey: string;
 
   APIKeyForm: FormGroup;
   newsForm: FormGroup;
 
   newsSources: NewsSource[] = [];
-  selectedSource: NewsSource;
+  selectedSources = new Set<NewsSource>();
 
-  numberOfArticles = 0;
-
-  errorMessage: string;
+  errorMessageSources: string;
+  errorSub: Subscription;
 
   constructor(private newsService: NewsService) { }
 
@@ -28,37 +28,43 @@ export class NewsAdminComponent implements OnInit {
     this.APIKeyForm = new FormGroup({
       'APIKey': new FormControl(this.newsService.APIKey)
     });
+    this.newsForm = new FormGroup({
+      'newsSource': new FormControl(null)
+    });
+
     this.newsService.getNewsSources().subscribe(sources => {
       this.newsSources = sources.sources;
     }, error1 => {
-      this.errorMessage = error1.error.message;
-      console.log(error1.error);
+      this.errorMessageSources = error1.error.message;
     });
-    this.newsForm = new FormGroup({
-      'newsSource': new FormControl(null),
-      'keyword': new FormControl(null)
+
+    this.errorSub = this.newsService.errorSubject.subscribe(message => {
+      this.errorMessageSources = message;
     });
+
+    this.selectedSources = new Set<NewsSource>(this.newsService.selectedSources);
+
   }
 
   onSaveAPIKey() {
     this.newsService.APIKey = this.APIKeyForm.value.APIKey;
+
   }
 
-  onChange() {
-    this.selectedSource = this.newsForm.value.newsSource;
+  onChange(event) {
+    this.selectedSources.add((<NewsSource>event.value));
   }
 
   onSelectedNews() {
-    //TODO: maybe the ability to select multiple sources
-    //TODO: check weather error handling
-    const keyword = this.newsForm.value.keyword;
-    const source = this.newsForm.value.newsSource.id;
-
-    this.newsService.getNewsBySources([source], keyword).subscribe(response => {
-      this.newsService.newsSubject.next(response.articles);
-      this.numberOfArticles = response.articles.length;
-    }, error1 => {
-      this.newsService.errorSubject.next(error1);
-    });
+    this.newsService.getNewsBySources(Array.from(this.selectedSources));
   }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
+  }
+
+  onRemoveSource(source: NewsSource) {
+    this.selectedSources.delete(source);
+  }
+
 }

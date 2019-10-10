@@ -1,48 +1,47 @@
-<div class="col-xs-12 col-md-6 col-md-offset-3">
-  <div>
-    <h3>News by NewsAPI.org</h3>
-  </div>
-  <br>
-  <div>
-    <form [formGroup]="APIKeyForm" (ngSubmit)="onSaveAPIKey()">
-      <div class="form-group">
-        <label for="APIKey">API Key</label>
-        <input
-          type="text"
-          id="APIKey"
-          formControlName="APIKey"
-          class="form-control">
-      </div>
-      <button class="btn btn-primary" type="submit">Save Key</button>
-    </form>
-  </div>
-  <br>
-  <div *ngIf="errorMessage" class="alert-danger">
-    <p>Error has occured: {{errorMessage}}</p>
-  </div>
-  <div>
-    <h4>News by source and keyword</h4>
-    <p class="font-italic mt-1 mb-1">At least one needs to be selected</p>
-    <form class="form-group" [formGroup]="newsForm" (ngSubmit)="onSelectedNews()">
-      <div>
-        <label for="news-source">News Source</label>
-        <select formControlName="newsSource" id="news-source" class="form-control" (change)="onChange()" #newsSource>
-          <option [ngValue]="''"></option>
-          <option *ngFor="let source of newsSources;" [ngValue]="source">{{source.name}}</option>
-        </select>
-      </div>
-      <div *ngIf="selectedSource">
-        <h5>{{selectedSource.name}}</h5>
-        <p>Country: {{selectedSource.country | countryName}}</p>
-        <p>{{selectedSource.url}}</p>
-        <p>{{selectedSource.description}}</p>
-      </div>
-      <div>
-        <label for="keyword">Keyword</label>
-        <input class="form-control" id="keyword" formControlName="keyword" #keyword>
-      </div>
-      <p>Found {{numberOfArticles}} {{numberOfArticles != 1 ? "articles" : "article"}}</p>
-      <button [disabled]="newsSource.value == '' && keyword.value == ''" class="btn btn-success" type="submit">Save</button>
-    </form>
-  </div>
+<div>
+  <h3 class="custom-header">News</h3>
+  <form [formGroup]="APIKeyForm" (ngSubmit)="onSaveAPIKey()" class="form-container">
+    <mat-form-field>
+      <input
+        type="text"
+        id="APIKey"
+        formControlName="APIKey"
+        matInput
+        placeholder="API Key">
+    </mat-form-field>
+    <p *ngIf="">Saved API Key</p>
+    <div class="custom-button">
+      <button mat-raised-button color="primary" type="submit">Save Key</button>
+    </div>
+  </form>
+  <form [formGroup]="newsForm" (ngSubmit)="onSelectedNews()" class="form-container">
+    <mat-form-field>
+      <mat-select placeholder="News Source" formControlName="newsSource" id="news-source" (selectionChange)="onChange($event)" #newsSource>
+        <mat-option *ngFor="let source of newsSources;" [value]="source">{{source.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="custom-panel">
+      <mat-expansion-panel *ngFor="let s of selectedSources">
+        <mat-expansion-panel-header>
+          <mat-panel-title>{{s.name}}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <h3>Country: {{s.country | countryName}}</h3>
+        <p>{{s.description}}</p>
+        <button type="button" mat-raised-button color="warn" (click)="onRemoveSource(s)">
+          Click to Remove
+        </button>
+      </mat-expansion-panel>
+    </div>
+
+
+    <div *ngIf="errorMessageSources" class="alert alert-danger">
+      <p>Error: </p>
+      <p>{{errorMessageSources.error.message}}</p>
+    </div>
+    <p *ngIf>Saved</p>
+    <div class="custom-button">
+      <button mat-raised-button color="primary" type="submit">Save Sources</button>
+    </div>
+  </form>
 </div>

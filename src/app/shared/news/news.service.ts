@@ -14,18 +14,19 @@ import {BehaviorSubject, Subject, Subscription, timer} from 'rxjs';
  */
 export class NewsService {
   private _APIKey: string = "";
+
   newsSubject = new BehaviorSubject<Article[]>([]);
-  errorSubject = new BehaviorSubject<string>(null);
   updateTimer: Subscription;
 
+  errorSubject = new Subject<string>();
+
   // TODO: take them from storage
-  currentSources: string[] = [];
-  currentKeyword = "";
+  selectedSources: NewsSource[] = [];
 
   constructor (private http: HttpClient) {
-    this.updateTimer = timer(0, 900000).subscribe(() => {
-      this.getNewsBySources(this.currentSources, this.currentKeyword);
-    });
+    if (this.selectedSources.length > 0) {
+      this.getNewsBySources(this.selectedSources);
+    }
   }
 
   get APIKey(): string {
@@ -42,49 +43,58 @@ export class NewsService {
    */
   getNewsSources() {
     const params = new HttpParams().set("apiKey", this.APIKey);
-
     return this.http.get<{status: string, sources: NewsSource[]}>(
       "https://newsapi.org/v2/sources",
       {
         params: params
-      }
-    ).pipe(
-      take(1)
-    );
+      }).pipe(take(1));
   }
+
+  convertSourceToId (sources: NewsSource[]) {
+    let sourcesString: string[] = [];
+    for (const source of sources) {
+      sourcesString.push(source.id);
+    }
+    return sourcesString;
+  };
 
 
   /**
    * Gets all the news articles with the given sources
    * @param sources - array of news site id's
-   * @param keyword - keyword that needs to be in the news, optional argument
+   * @param keyword - keyword that needs to be in the news, optional argument - currently disabled
    */
-  getNewsBySources(sources: string[], keyword?: string) {
-    this.currentSources = sources;
-    this.currentKeyword = keyword;
-
-    let params = new HttpParams().set("apiKey", this.APIKey);
+  getNewsBySources(sources: NewsSource[], keyword?: string) {
+    this.selectedSources = sources;
 
     let concatSources = "";
     for (const source of sources) {
-      concatSources += source + ",";
+      concatSources += source.id + ",";
     }
     concatSources = concatSources.substring(0, concatSources.length - 1);
+
+    let params = new HttpParams().set("apiKey", this.APIKey);
     params = params.set("sources", concatSources);
 
-    if (keyword) {
-      params = params.set("q", keyword);
-    }
-
-    return this.http.get<{status: string, totalResults: number, articles: Article[]}>(
+    this.http.get<{status: string, totalResults: number, articles: Article[]}>(
       "https://newsapi.org/v2/top-headlines",
       {
         params: params
       }
     ).pipe(
       take(1)
-    );
+    ).subscribe(response => {
+      this.newsSubject.next(response.articles);
+    }, error1 => {
+      this.errorSubject.next(error1);
+      console.log(error1);
+    });
   }
+
+
+
+
+
 
   // The ones below not used currently.
 
