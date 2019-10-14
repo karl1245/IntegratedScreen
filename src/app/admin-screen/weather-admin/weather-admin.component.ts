@@ -5,7 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 @Component({
   selector: 'app-weather-admin',
   templateUrl: './weather-admin.component.html',
-  styleUrls: ['./weather-admin.component.css']
+  styleUrls: ['./weather-admin.component.css', '../admin-screen.component.css']
 })
 export class WeatherAdminComponent implements OnInit {
   APIkey: string;

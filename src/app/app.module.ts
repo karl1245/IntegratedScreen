@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from './admin-screen/header/header.component';
 import { NewsService } from './shared/news/news.service';
 import { WeatherService } from './shared/weather/weather.service';
 import { AdminScreenModule } from './admin-screen/admin-screen.module';
@@ -18,8 +17,7 @@ import {MaterialModule} from './material/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

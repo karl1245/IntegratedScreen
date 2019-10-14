@@ -7,7 +7,7 @@ import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-news-admin',
   templateUrl: './news-admin.component.html',
-  styleUrls: ['./news-admin.component.css']
+  styleUrls: ['./news-admin.component.css', '../admin-screen.component.css']
 })
 export class NewsAdminComponent implements OnInit, OnDestroy {
   APIkey: string;

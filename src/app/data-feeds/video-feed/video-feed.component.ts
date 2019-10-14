@@ -5,7 +5,7 @@ import { VideoService } from '../../shared/video/video.service';
 @Component({
   selector: 'app-video-feed',
   templateUrl: './video-feed.component.html',
-  styleUrls: ['./video-feed.component.css']
+  styleUrls: ['./video-feed.component.css', '../data-feeds.component.css']
 })
 export class VideoFeedComponent implements OnInit {
   title = 'IntegratedScreen';

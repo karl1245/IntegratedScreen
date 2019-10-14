@@ -1,0 +1,25 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-top: 1em;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.custom-header {
+  display: flex;
+  flex-direction: column;
+  padding: 1em 8%;
+}
+.custom-button {
+  align-content: flex-start;
+}
+
+.custom-panel {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
