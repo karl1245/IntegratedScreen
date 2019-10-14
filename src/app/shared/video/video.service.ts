@@ -3,13 +3,19 @@ import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class VideoService {
+  currentVideoId: string = "Fdf5aTYRW0E";
+  newVideo = new BehaviorSubject(this.currentVideoId);
 
-    private messageSource = new BehaviorSubject('default message');
-    currentMessage = this.messageSource.asObservable();
-  
-    constructor() { }
-    
-    changeMessage(message: string) {
-      this.messageSource.next(message)
-    }
+
+
+  constructor() { }
+
+  /**
+  * Saves video as new video in data feed
+  * @param id - v parameter in "https://www.youtube.com/watch?v=Fdf5aTYRW0E"
+  */
+  saveVideo(id: string) {
+    this.currentVideoId = id;
+    this.newVideo.next(this.currentVideoId);
+  }
 }

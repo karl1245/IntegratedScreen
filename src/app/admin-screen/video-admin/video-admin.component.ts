@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./video-admin.component.css', '../admin-screen.component.css']
 })
 export class VideoAdminComponent implements OnInit {
-  videoLocation: string;
+  currentVideoId: string;
   videoForm: FormGroup;
   errorMessage: string;
 
@@ -17,9 +17,9 @@ export class VideoAdminComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.videoLocation = "";
+    this.currentVideoId = this.videoService.currentVideoId;
     this.videoForm = new FormGroup({
-      'videoLocation': new FormControl(this.videoLocation)
+      'videoLocation': new FormControl("https://www.youtube.com/watch?v=" + this.currentVideoId)
     });
   }
 
@@ -28,8 +28,8 @@ export class VideoAdminComponent implements OnInit {
     if (videoRaw.substring(0, "https://".length) == "https://") {
       videoRaw = videoRaw.substring("https://".length, videoRaw.length);
     }
-    let video = this.router.parseUrl(videoRaw).queryParamMap.get('v');
-    this.videoService.changeMessage(video);
+    const videoId = this.router.parseUrl(videoRaw).queryParamMap.get('v');
+    this.videoService.saveVideo(videoId);
   }
 
 }
