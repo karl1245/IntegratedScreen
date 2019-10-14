@@ -23,6 +23,15 @@ export class WeatherComponent implements OnInit, OnDestroy {
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
+    this.city = this.weatherService.currentCity;
+    this.isMetric = this.weatherService.isMetric;
+
+    this.weatherService.getWeather(this.city, this.isMetric).subscribe(response => {
+      this.weather = response;
+      this.weatherImageLocation = "http://openweathermap.org/img/wn/" + this.weather.weather[0].icon + "@2x.png";
+      this.city = response.name
+    });
+
     this.weatherSub = this.weatherService.weatherSubject.subscribe(response => {
       if (response) {
         this.weather = response.weather;

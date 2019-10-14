@@ -13,6 +13,8 @@ export class WeatherAdminComponent implements OnInit {
   APIKeyForm: FormGroup;
   weatherReqForm: FormGroup;
 
+  currentCity = this.weatherService.currentCity;
+
   errorMessage: string;
 
   constructor(private weatherService: WeatherService) { }
@@ -23,8 +25,8 @@ export class WeatherAdminComponent implements OnInit {
       'APIKey': new FormControl(this.weatherService.APIKey)
     });
     this.weatherReqForm = new FormGroup({
-      'city': new FormControl(null),
-      'isMetric': new FormControl(true)
+      'city': new FormControl(this.currentCity),
+      'isMetric': new FormControl(this.weatherService.isMetric)
     });
   }
 

@@ -50,7 +50,7 @@ export class WeatherService {
 
     let params = new HttpParams().set("q", city);
     params = params.set("APPID", this._APIKey);
-    params = params.set("units", isMetric ? "metric" : "imperial");
+    params = params.set("units", this.isMetric ? "metric" : "imperial");
 
     return this.http.get<Weather>(
       "https://api.openweathermap.org/data/2.5/weather",

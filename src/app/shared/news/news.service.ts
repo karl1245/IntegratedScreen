@@ -16,6 +16,8 @@ export class NewsService {
   private _APIKey: string = "";
 
   newsSubject = new BehaviorSubject<Article[]>([]);
+
+  // TODO: add timer to update after intervals
   updateTimer: Subscription;
 
   errorSubject = new Subject<string>();
@@ -86,63 +88,7 @@ export class NewsService {
     ).subscribe(response => {
       this.newsSubject.next(response.articles);
     }, error1 => {
-      this.errorSubject.next(error1);
-      console.log(error1);
+      this.errorSubject.next(error1.error.message);
     });
-  }
-
-
-
-
-
-
-  // The ones below not used currently.
-
-  /**
-   * Gets news with the given. Parameter can be null, but at least one parameter needs to be used.
-   * @param country - country abbreviation
-   * @param category - category, e.g. entertainment, general
-   * @param keyword - keyword that needs to be in the news
-   */
-  getNews(country: string, category: string, keyword: string) {
-    //TODO: add error check if all parameters null
-    let params = new HttpParams().set("apiKey", this.APIKey);
-    if (country) {
-      params = params.set("country", keyword);
-    }
-    if (category) {
-      params = params.set("category", keyword);
-    }
-    if (keyword) {
-      params = params.set("q", keyword);
-    }
-
-    return this.http.get<{status: string, totalResults: number, articles: Article[]}>(
-      "https://newsapi.org/v2/top-headlines",
-      {
-        params: params
-      }
-    ).pipe(
-      take(1)
-    );
-  }
-
-
-  /**
-   * Returns a list of all the available news sources.
-   * @param country - abbreviation of the country, e.g. gb, us, ...
-   */
-  getNewsSourcesByCountry(country: string) {
-    const params = new HttpParams().set("apiKey", this.APIKey);
-    params.set("country", country);
-
-    return this.http.get<{status: string, sources: NewsSource[]}>(
-      "https://newsapi.org/v2/sources",
-      {
-        params: params
-      }
-    ).pipe(
-      take(1)
-    );
   }
 }

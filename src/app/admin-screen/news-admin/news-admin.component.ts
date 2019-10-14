@@ -35,10 +35,12 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
     this.newsService.getNewsSources().subscribe(sources => {
       this.newsSources = sources.sources;
     }, error1 => {
+      console.log("error1: " + error1);
       this.errorMessageSources = error1.error.message;
     });
 
     this.errorSub = this.newsService.errorSubject.subscribe(message => {
+      console.log("message: " + message);
       this.errorMessageSources = message;
     });
 
