@@ -1,24 +1,5 @@
 {
-  "name": "integrated-screen-electron",
-  "productName": "Integrated Information Screen",
-  "description": "Info",
-  "main": "electron.prod.js",
-  "license": "MIT",
-  "version": "0.0.0",
-  "scripts": {
-    "postinstall": "ng build --aot -prod",
-    "ng": "ng",
-    "start": "node server.js",
-    "electron": "electron ./electron.dev",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "package:win": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --platform=win32 --arch=all --overwrite ",
-    "package:linux": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --platform=linux --arch=all --overwrite ",
-    "package:osx": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --platform=darwin --arch=all --overwrite ",
-    "package:all": "npm run build && cross-var electron-packager dist $npm_package_name-$npm_package_version --out=packages --all --arch=all --overwrite "
-  },
+  
   "private": true,
   "dependencies": {
     "@angular/compiler-cli": "^8.1.3",
