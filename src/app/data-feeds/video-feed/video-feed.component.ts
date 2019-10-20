@@ -8,9 +8,14 @@ import { VideoService } from '../../shared/video/video.service';
   styleUrls: ['./video-feed.component.css', '../data-feeds.component.css']
 })
 export class VideoFeedComponent implements OnInit {
+  
   id: string;
   playerVars = {
-    cc_lang_pref: 'en'
+    cc_lang_pref: 'en',
+    autoplay: 1,
+    loop: 1,
+    playlist: this.id
+
   };
   videoSub: Subscription;
 
@@ -23,6 +28,7 @@ export class VideoFeedComponent implements OnInit {
     this.id = this.videoService.currentVideoId;
     this.videoSub = this.videoService.newVideo.subscribe(videoId => {
       this.id = videoId;
+      this.playerVars.playlist = videoId;
     });
   }
 
