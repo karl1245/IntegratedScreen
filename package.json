@@ -8,7 +8,7 @@
   "scripts": {
     "postinstall": "ng build --aot -prod",
     "ng": "ng",
-    "start": "node server.js",//"concurrently \"ng serve\" \"npm run electron\"",
+    "start": "node server.js",
     "electron": "electron ./electron.dev",
     "build": "ng build",
     "test": "ng test",
