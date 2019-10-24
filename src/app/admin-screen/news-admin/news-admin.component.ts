@@ -18,8 +18,8 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
   newsSources: NewsSource[] = [];
   selectedSources = new Set<NewsSource>();
 
-  errorMessageSources: string;
   errorSub: Subscription;
+  errorMessage: String;
 
   constructor(private newsService: NewsService) { }
 
@@ -32,25 +32,18 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
       'newsSource': new FormControl(null)
     });
 
-    this.newsService.getNewsSources().subscribe(sources => {
-      this.newsSources = sources.sources;
-    }, error1 => {
-      console.log("error1: " + error1);
-      this.errorMessageSources = error1.error.message;
-    });
-
     this.errorSub = this.newsService.errorSubject.subscribe(message => {
-      console.log("message: " + message);
-      this.errorMessageSources = message;
+      this.errorMessage = message;
     });
 
     this.selectedSources = new Set<NewsSource>(this.newsService.selectedSources);
 
+    this.updateNewsSources();
   }
 
   onSaveAPIKey() {
     this.newsService.APIKey = this.APIKeyForm.value.APIKey;
-
+    this.updateNewsSources();
   }
 
   onChange(event) {
@@ -61,12 +54,21 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
     this.newsService.getNewsBySources(Array.from(this.selectedSources));
   }
 
-  ngOnDestroy() {
-    this.errorSub.unsubscribe();
-  }
-
   onRemoveSource(source: NewsSource) {
     this.selectedSources.delete(source);
+  }
+
+  updateNewsSources() {
+    this.newsService.getNewsSources().subscribe(sources => {
+      this.newsService.errorSubject.next(null);
+      this.newsSources = sources.sources;
+    }, error => {
+      this.newsService.errorSubject.next(error.error.message);
+    });
+  }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
   }
 
 }

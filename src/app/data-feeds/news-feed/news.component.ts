@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NewsService} from '../../shared/news/news.service';
 import {Article} from '../../shared/news/article';
-import {Subject, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-news',
@@ -18,6 +18,8 @@ export class NewsComponent implements OnInit, OnDestroy {
     this.newsSub = this.newsService.newsSubject.subscribe(articles => {
       this.articlesToDisplay = articles;
     });
+
+    this.newsService.getNews();
   }
 
   ngOnDestroy() {

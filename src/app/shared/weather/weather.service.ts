@@ -1,8 +1,8 @@
-import {Injectable, OnDestroy, OnInit} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
-import {catchError, map, take} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {take} from 'rxjs/operators';
 import {Weather} from './weather';
-import {BehaviorSubject, Subject, Subscription, throwError, timer} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +12,15 @@ import {BehaviorSubject, Subject, Subscription, throwError, timer} from 'rxjs';
  * https://openweathermap.org/
  */
 export class WeatherService {
-  /*
-  TODO: maybe add instructions
-   */
   private _APIKey: string = "";
-  weatherSubject = new BehaviorSubject<{weather: Weather, isMetric: boolean}>(null);
+
+  weatherSubject = new Subject<Weather>();
   errorSubject = new BehaviorSubject<string>(null);
-  updateTimer: Subscription;
 
-  // TODO: maybe take them from local storage
-  currentCity: string = "Tallinn";
-  isMetric = true;
+  private _currentCity: string = "Tallinn";
+  private _isMetric = true;
 
-  constructor (private http: HttpClient) {
-    this.updateTimer = timer(0, 900000).subscribe(() => {
-      this.getWeather(this.currentCity, this.isMetric);
-    });
-  }
+  constructor (private http: HttpClient) { }
 
   set APIKey(value: string) {
     this._APIKey = value;
@@ -38,9 +30,24 @@ export class WeatherService {
     return this._APIKey;
   }
 
+  get currentCity(): string {
+    return this._currentCity;
+  }
+
+  set currentCity(value: string) {
+    this._currentCity = value;
+  }
+
+  get isMetric(): boolean {
+    return this._isMetric;
+  }
+
+  set isMetric(value: boolean) {
+    this._isMetric = value;
+  }
 
   /**
-   * Returns the http request for the weather request.
+   * Does the http request to API and sends results to weatherSubject and if there was an error errorSubject.
    * @param city - name of the city.
    * @param isMetric - if you want the weather data to be return in C or F
    */
@@ -48,17 +55,20 @@ export class WeatherService {
     this.currentCity = city;
     this.isMetric = isMetric;
 
-    let params = new HttpParams().set("q", city);
-    params = params.set("APPID", this._APIKey);
+    let params = new HttpParams().set("q", this.currentCity);
+    params = params.set("APPID", this.APIKey);
     params = params.set("units", this.isMetric ? "metric" : "imperial");
 
-    return this.http.get<Weather>(
+    this.http.get<Weather>(
       "https://api.openweathermap.org/data/2.5/weather",
-      {
-        params: params
-      }
-    ).pipe(
+      {params: params}
+      ).pipe(
       take(1)
-    );
+    ).subscribe(weather => {
+      this.errorSubject.next(null);
+      this.weatherSubject.next(weather);
+    }, error => {
+      this.errorSubject.next(error.error.message);
+    });
   }
 }

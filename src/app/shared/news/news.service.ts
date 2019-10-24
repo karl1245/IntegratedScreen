@@ -15,20 +15,13 @@ import {BehaviorSubject, Subject, Subscription, timer} from 'rxjs';
 export class NewsService {
   private _APIKey: string = "";
 
-  newsSubject = new BehaviorSubject<Article[]>([]);
+  newsSubject = new Subject<Article[]>();
+  errorSubject = new BehaviorSubject<string>(null);
 
-  // TODO: add timer to update after intervals
-  updateTimer: Subscription;
-
-  errorSubject = new Subject<string>();
-
-  // TODO: take them from storage
   selectedSources: NewsSource[] = [];
 
   constructor (private http: HttpClient) {
-    if (this.selectedSources.length > 0) {
-      this.getNewsBySources(this.selectedSources);
-    }
+    this.getNews();
   }
 
   get APIKey(): string {
@@ -52,21 +45,12 @@ export class NewsService {
       }).pipe(take(1));
   }
 
-  convertSourceToId (sources: NewsSource[]) {
-    let sourcesString: string[] = [];
-    for (const source of sources) {
-      sourcesString.push(source.id);
-    }
-    return sourcesString;
-  };
-
 
   /**
    * Gets all the news articles with the given sources
    * @param sources - array of news site id's
-   * @param keyword - keyword that needs to be in the news, optional argument - currently disabled
    */
-  getNewsBySources(sources: NewsSource[], keyword?: string) {
+  getNewsBySources(sources: NewsSource[]) {
     this.selectedSources = sources;
 
     let concatSources = "";
@@ -86,9 +70,20 @@ export class NewsService {
     ).pipe(
       take(1)
     ).subscribe(response => {
+      this.errorSubject.next(null);
       this.newsSubject.next(response.articles);
-    }, error1 => {
-      this.errorSubject.next(error1.error.message);
+    }, error => {
+      console.log("error");
+      this.errorSubject.next(error.error.message);
     });
+  }
+
+  /**
+   * Runs getNewsBySources with selectedSources if there are any.
+   */
+  getNews() {
+    if (this.selectedSources.length > 0) {
+      this.getNewsBySources(this.selectedSources);
+    }
   }
 }

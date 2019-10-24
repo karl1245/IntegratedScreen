@@ -13,6 +13,7 @@ import { TransportService } from './shared/transport/transport.service';
 import { VideoService } from './shared/video/video.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
+import {UpdateDataTimerService} from './shared/updateDataTimer.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {MaterialModule} from './material/material.module';
     NewsService,
     WeatherService,
     TransportService,
-    VideoService
+    VideoService,
+    UpdateDataTimerService
   ],
   bootstrap: [AppComponent]
 })

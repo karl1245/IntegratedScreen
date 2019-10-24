@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UpdateDataTimerService} from '../shared/updateDataTimer.service';
 
 @Component({
   selector: 'app-data-feeds',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DataFeedsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private updateTimerService: UpdateDataTimerService) { }
 
   ngOnInit() {
   }
