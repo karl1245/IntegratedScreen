@@ -14,6 +14,7 @@ import { VideoService } from './shared/video/video.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {UpdateDataTimerService} from './shared/updateDataTimer.service';
+import {StorageService} from './shared/storage.service';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {UpdateDataTimerService} from './shared/updateDataTimer.service';
     WeatherService,
     TransportService,
     VideoService,
-    UpdateDataTimerService
+    UpdateDataTimerService,
+    StorageService
   ],
   bootstrap: [AppComponent]
 })

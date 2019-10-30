@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import {StorageService} from '../storage.service';
 
 @Injectable()
 export class VideoService {
-  currentVideoId: string = "Fdf5aTYRW0E";
+  currentVideoId: string = "";
   newVideo = new BehaviorSubject(this.currentVideoId);
 
 
-
-  constructor() { }
+  constructor(private storageService: StorageService) {
+    this.currentVideoId = this.storageService.getVideo();
+  }
 
   /**
   * Saves video as new video in data feed
@@ -17,5 +19,6 @@ export class VideoService {
   saveVideo(id: string) {
     this.currentVideoId = id;
     this.newVideo.next(this.currentVideoId);
+    this.storageService.saveVideo(id);
   }
 }

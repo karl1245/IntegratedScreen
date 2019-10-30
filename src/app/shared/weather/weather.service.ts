@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {take} from 'rxjs/operators';
 import {Weather} from './weather';
 import {BehaviorSubject, Subject} from 'rxjs';
+import {StorageService} from '../storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +18,19 @@ export class WeatherService {
   weatherSubject = new Subject<Weather>();
   errorSubject = new BehaviorSubject<string>(null);
 
-  private _currentCity: string = "Tallinn";
+  private _currentCity: string = "";
   private _isMetric = true;
 
-  constructor (private http: HttpClient) { }
+  constructor (private http: HttpClient, private storageService: StorageService) {
+    this.APIKey = this.storageService.getWeatherAPIKey();
+    const weatherSettings: {city: string, isMetric: boolean} = this.storageService.getWeather();
+    this.currentCity = weatherSettings.city;
+    this.isMetric = weatherSettings.isMetric;
+  }
 
   set APIKey(value: string) {
     this._APIKey = value;
+    this.storageService.saveWeatherAPIKey(value);
   }
 
   get APIKey(): string {
@@ -70,5 +77,6 @@ export class WeatherService {
     }, error => {
       this.errorSubject.next(error.error.message);
     });
+    this.storageService.saveWeather(this.currentCity, this.isMetric);
   }
 }

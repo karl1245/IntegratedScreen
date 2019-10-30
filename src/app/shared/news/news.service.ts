@@ -4,6 +4,7 @@ import {take} from 'rxjs/operators';
 import {Article} from './article';
 import {NewsSource} from './news-source';
 import {BehaviorSubject, Subject, Subscription, timer} from 'rxjs';
+import {StorageService} from '../storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,9 @@ export class NewsService {
 
   selectedSources: NewsSource[] = [];
 
-  constructor (private http: HttpClient) {
-    this.getNews();
+  constructor (private http: HttpClient, private storageService: StorageService) {
+    this.APIKey = this.storageService.getNewsAPIKey();
+    this.selectedSources = this.storageService.getNews();
   }
 
   get APIKey(): string {
@@ -30,6 +32,7 @@ export class NewsService {
 
   set APIKey(value: string) {
     this._APIKey = value;
+    this.storageService.saveNewsAPIKey(value);
   }
 
 
@@ -73,9 +76,9 @@ export class NewsService {
       this.errorSubject.next(null);
       this.newsSubject.next(response.articles);
     }, error => {
-      console.log("error");
       this.errorSubject.next(error.error.message);
     });
+    this.storageService.saveNews(this.selectedSources);
   }
 
   /**

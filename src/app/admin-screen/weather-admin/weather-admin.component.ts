@@ -34,15 +34,15 @@ export class WeatherAdminComponent implements OnInit, OnDestroy {
       this.errorMessage = error;
     });
 
-    this.onCheckWeather();
+    this.onSaveWeather();
   }
 
   onSaveAPIKey() {
     this.weatherService.APIKey = this.APIKeyForm.value.APIKey;
-    this.onCheckWeather();
+    this.onSaveWeather();
   }
 
-  onCheckWeather() {
+  onSaveWeather () {
     const city = this.weatherReqForm.value.city;
     const isMetric: boolean = this.weatherReqForm.value.isMetric;
 

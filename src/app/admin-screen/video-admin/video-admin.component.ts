@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./video-admin.component.css', '../admin-screen.component.css']
 })
 export class VideoAdminComponent implements OnInit {
-  currentVideoId: string;
   videoForm: FormGroup;
   errorMessage: string;
 
@@ -17,9 +16,10 @@ export class VideoAdminComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.currentVideoId = this.videoService.currentVideoId;
+    const currentVideoId = this.videoService.currentVideoId;
     this.videoForm = new FormGroup({
-      'videoLocation': new FormControl("https://www.youtube.com/watch?v=" + this.currentVideoId)
+      'videoLocation': new FormControl(
+        currentVideoId != "" ? "https://www.youtube.com/watch?v=" + currentVideoId : "")
     });
   }
 
