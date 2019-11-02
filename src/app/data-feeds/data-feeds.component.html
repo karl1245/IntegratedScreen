@@ -1,13 +1,55 @@
-<a class="btn btn-primary" [routerLink]="['/', 'admin', 'news']">To Admin Screen</a>
-<hr>
-<br>
-<app-weather></app-weather>
-<hr>
-<br>
-<app-news></app-news>
-<hr>
-<br>
-<app-video-feed></app-video-feed>
-<hr>
-<br>
-<app-transport></app-transport>
+<!DOCTYPE html>
+<html>
+<head><title>Update Time</title>
+  <script>
+      function startTime() {
+          var today = new Date();
+          var h = today.getHours();
+          var m = today.getMinutes();
+          var s = today.getSeconds();
+          m = checkTime(m);
+          s = checkTime(s);
+          document.getElementById('time').innerHTML =
+              h + ":" + m + ":" + s;
+          setTimeout(startTime, 500);
+      }
+      function checkTime(i) {
+          if (i < 10) {i = "0" + i}  // add zero in front of numbers < 10
+          return i;
+      }
+    startTime();
+  </script>
+</head>
+<body onload="startTime()">
+<div class="container-1">
+  <div class="box-1">
+    <span id=time style="position:absolute;"></span>
+  </div>
+  <div class="box-2">
+    <app-weather></app-weather>
+  </div>
+  <div class="box-3">
+    <h1>E-Governance academy</h1>
+  </div>
+  <div class="box-4">
+    <a class="btn btn-primary" [routerLink]="['/', 'admin', 'news']">To Admin Screen</a>
+  </div>
+</div>
+
+<div class="container-2">
+  <div class="c2-box-1">
+    <app-video-feed></app-video-feed>
+  </div>
+  <div class="c2-box-2">
+    <app-transport></app-transport>
+  </div>
+</div>
+
+<div class="container-3">
+  <div class="c3-box-1">
+    <app-news></app-news>
+  </div>
+</div>
+</body>
+</html>
+
