@@ -1,3 +1,7 @@
+div {
+  background-color: transparent;
+}
+
 .Row1
 {
   display: table;
@@ -15,4 +19,8 @@
 .Column
 {
   display: table-cell;
+}
+
+div {
+  background-color: transparent;
 }
