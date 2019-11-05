@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 import {TransportComponent} from  './transport-feed/transport.component';
 import {RouterModule} from '@angular/router';
+import {ClockComponent} from './clock/clock.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {RouterModule} from '@angular/router';
     NewsComponent,
     DataFeedsComponent,
     VideoFeedComponent,
-    TransportComponent
+    TransportComponent,
+    ClockComponent
   ],
   imports: [
     RouterModule,
@@ -27,7 +29,8 @@ import {RouterModule} from '@angular/router';
     NewsComponent,
     DataFeedsComponent,
     VideoFeedComponent,
-    NgxYoutubePlayerModule
+    NgxYoutubePlayerModule,
+    ClockComponent
   ]
 })
 export class DataFeedModule {

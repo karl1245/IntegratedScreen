@@ -1,0 +1,19 @@
+h1, h2, h3, h4, h5, h6, p {
+  color: #c6c6cc;
+}
+
+.post-list {
+  animation: slide infinite 3s alternate;
+}
+
+@keyframes slide {
+  0% {
+    margin-left: 0px;
+  }
+  50% {
+    margin-left: -100px;
+  }
+  100% {
+    margin-left: -200px;
+  }
+}
