@@ -1,4 +1,56 @@
 {
+  "name": "integrated-screen",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "main.js",
+  "build": {
+    "appId": "com.tvp.IntegratedScreen",
+    "productName": "Integrated Screen",
+    "files": [
+      "dist/integrated-screen/**/*",
+      "dist/**/*",
+      "*.js",
+      "build",
+      "node_modules/**/*",
+      "package.json",
+      "main.js"
+    ],
+    "directories": {
+      "output": "release",
+      "buildResources": "dist"
+    },
+    "asar": false,
+    "win": {
+      "publish": {
+        "provider": "github",
+        "repo": "https://github.com/karl1245/IntegratedScreen",
+        "owner": "karl1245",
+        "vPrefixedTagName": "true",
+        "host": "github.com",
+        "protocol": "https",
+        "token": "5e9bc86a048a257069f5e269c2e0a7effe05cca0",
+        "private": "true"
+      },
+      "target": [
+        "nsis"
+      ]
+    }
+  },
+  "scripts": {
+    "ng": "ng",
+    "release": "build",
+    "start": "ng serve",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
+    "postinstall": "install-app-deps",
+    "build": "ng build --prod",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
+    "electron": "electron .",
+    "electron-build": "ng build --prod && electron .",
+    "electron-package": "electron-packager . IntegratedScreen --platform=win32 --arch=x64"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.1.2",
@@ -16,6 +68,8 @@
     "@mapbox/mapbox-gl-directions": "^4.0.2",
     "@types/mapbox-gl": "^0.54.4",
     "bootstrap": "^4.3.1",
+    "electron-reload": "^1.5.0",
+    "electron-updater": "^4.2.0",
     "mapbox-gl": "^1.4.1",
     "ngx-youtube-player": "^7.1.1",
     "rxjs": "~6.4.0",
@@ -34,6 +88,8 @@
     "codelyzer": "^5.0.0",
     "concurrently": "^5.0.0",
     "cross-var": "^1.1.0",
+    "electron": "^7.1.0",
+    "electron-builder": "^22.1.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
