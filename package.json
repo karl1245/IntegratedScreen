@@ -1,8 +1,14 @@
 {
   "name": "integrated-screen",
-  "version": "0.1.0",
+  "author": "TÜ",
+  "description": "An integrated screen for real-time information",
+  "version": "0.1.6",
   "license": "MIT",
   "main": "main.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/karl1245/IntegratedScreen.git"
+  },
   "build": {
     "appId": "com.tvp.IntegratedScreen",
     "productName": "Integrated Screen",
@@ -21,16 +27,11 @@
     },
     "asar": false,
     "win": {
-      "publish": {
+      "publish": [{
         "provider": "github",
-        "repo": "https://github.com/karl1245/IntegratedScreen",
-        "owner": "karl1245",
         "vPrefixedTagName": "true",
-        "host": "github.com",
-        "protocol": "https",
-        "token": "5e9bc86a048a257069f5e269c2e0a7effe05cca0",
-        "private": "true"
-      },
+        "token": "e5f3b0ea1d14297e7d9c88f772d84fa80b4486c3"
+      }],
       "target": [
         "nsis"
       ]
@@ -40,7 +41,7 @@
     "ng": "ng",
     "release": "build",
     "start": "ng serve",
-    "pack": "electron-builder --dir",
+    "publish": "electron-builder --publish always",
     "dist": "electron-builder",
     "postinstall": "install-app-deps",
     "build": "ng build --prod",

@@ -1,4 +1,4 @@
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain} = require('electron')
 const {autoUpdater} = require("electron-updater");
 const url = require("url");
 const path = require("path");
@@ -38,34 +38,20 @@ function createWindow () {
   })
 }
 
-app.on('ready', createWindow)
-
-// autoupdater
-autoUpdater.on('checking-for-update', () => {
-  sendStatusToWindow('Checking for update...');
-})
-autoUpdater.on('update-available', (info) => {
-  sendStatusToWindow('Update available.');
-})
-autoUpdater.on('update-not-available', (info) => {
-  sendStatusToWindow('Update not available.');
-})
-autoUpdater.on('error', (err) => {
-  sendStatusToWindow('Error in auto-updater. ' + err);
-})
-autoUpdater.on('download-progress', (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%';
-  log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
-  sendStatusToWindow(log_message);
-})
-autoUpdater.on('update-downloaded', (info) => {
-  sendStatusToWindow('Update downloaded');
-});
-
-app.on('ready', function()  {
+app.on('ready', () => {
+  createWindow();
   autoUpdater.checkForUpdatesAndNotify();
 });
+
+// autoupdater
+autoUpdater.on('update-available', (info) => {
+  mainWindow.webContents.send('update_available');
+})
+autoUpdater.on('update-downloaded', (info) => {
+  mainWindow.webContents.send('update_downloaded');
+});
+
+
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
@@ -74,3 +60,11 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
   if (mainWindow === null) createWindow()
 })
+
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
+});
+
+ipcMain.on('restart_app', () => {
+  autoUpdater.quitAndInstall();
+});
