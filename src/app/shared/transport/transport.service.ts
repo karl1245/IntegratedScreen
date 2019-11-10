@@ -14,4 +14,5 @@ export class TransportService {
     transportSubject = new BehaviorSubject<{transport: Transport, isMetric: boolean}>(null);
     errorSubject = new BehaviorSubject<string>(null);
     updateTimer: Subscription;
+
 }

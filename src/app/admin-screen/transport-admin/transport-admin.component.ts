@@ -10,8 +10,6 @@ import { TransportService } from 'src/app/shared/transport/transport.service';
 export class TransportAdminComponent implements OnInit {
   transportLocation: string;
   transportForm: FormGroup;
-
-
   constructor(private transportService: TransportService) { }
 
   ngOnInit() {
