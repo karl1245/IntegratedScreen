@@ -40,6 +40,15 @@ export class StorageService {
   }
 
   /**
+   * Reads transport API key from storage
+   * Returns API key or empty string.
+   */
+  getTransportAPIKey() {
+    const key = localStorage.getItem("transportAPIKey");
+    return key != null ? key : "";
+  }
+
+  /**
    * Reads video id from storage
    * Returns video id or empty string.
    */
@@ -88,5 +97,13 @@ export class StorageService {
    */
   saveWeatherAPIKey(APIKey: string) {
     localStorage.setItem("weatherAPIKey", APIKey);
+  }
+
+  /**
+   * Saves transport API key to local storage.
+   * @param APIKey
+   */
+  saveTransportAPIKey(APIKey: string) {
+    localStorage.setItem("transportAPIKey", APIKey);
   }
 }

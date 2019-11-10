@@ -1,6 +1,7 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-transport',
@@ -12,6 +13,8 @@ export class TransportComponent implements OnInit {
   style = 'mapbox://styles/mapbox/streets-v11';
   lat = 59.4370;
   lng = 24.7536;
+  transportSub: Subscription;
+  
   constructor() { }
   ngOnInit() {
     Object.getOwnPropertyDescriptor(mapboxgl, "accessToken").set('pk.eyJ1IjoibGVuYXJkMTI0IiwiYSI6ImNrMWtzcW93ZTFhZGEza2p5anlwdmlqdGoifQ.W-M2nFgwfGUs66suKydZxQ');
