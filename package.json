@@ -6,8 +6,8 @@
   "license": "MIT",
   "main": "main.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/karl1245/IntegratedScreen.git"
+    "type": "git",
+    "url": "https://github.com/karl1245/IntegratedScreen.git"
   },
   "build": {
     "appId": "com.tvp.IntegratedScreen",
@@ -27,11 +27,13 @@
     },
     "asar": false,
     "win": {
-      "publish": [{
-        "provider": "github",
-        "vPrefixedTagName": "true",
-        "token": "e5f3b0ea1d14297e7d9c88f772d84fa80b4486c3"
-      }],
+      "publish": [
+        {
+          "provider": "github",
+          "vPrefixedTagName": "true",
+          "token": "e5f3b0ea1d14297e7d9c88f772d84fa80b4486c3"
+        }
+      ],
       "target": [
         "nsis"
       ]

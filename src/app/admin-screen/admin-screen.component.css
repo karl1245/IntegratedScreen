@@ -17,6 +17,7 @@
 }
 .custom-button {
   align-content: flex-start;
+  display: inline;
 }
 
 .custom-panel {

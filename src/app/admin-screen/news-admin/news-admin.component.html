@@ -9,10 +9,14 @@
         matInput
         placeholder="API Key">
     </mat-form-field>
-    <p *ngIf="">Saved API Key</p>
-    <div class="custom-button">
-      <button mat-raised-button color="primary" type="submit">Save Key</button>
-    </div>
+      <div class="custom-button">
+        <button mat-raised-button color="primary" type="submit">Save Key</button>
+        <app-saved-message
+          [message]="'API Key Saved'"
+          [saving]="keySaved"
+          (saved)="keySaved=false"
+        ></app-saved-message>
+      </div>
   </form>
   <form [formGroup]="newsForm" (ngSubmit)="onSelectedNews()" class="form-container">
     <mat-form-field>
@@ -39,9 +43,13 @@
       <p>Error: </p>
       <p>{{errorMessage}}</p>
     </div>
-
     <div class="custom-button">
       <button mat-raised-button color="primary" type="submit">Save Sources</button>
+      <app-saved-message
+        [message]="'News Saved'"
+        [saving]="newsSaved"
+        (saved)="newsSaved=false"
+      ></app-saved-message>
     </div>
   </form>
 </div>

@@ -16,6 +16,11 @@
     </div>
     <div class="custom-button">
       <button mat-raised-button color="primary" type="submit">Save Video</button>
+      <app-saved-message
+        [message]="'Video Saved'"
+        [saving]="videoSaved"
+        (saved)="videoSaved=false"
+      ></app-saved-message>
     </div>
   </form>
 </div>

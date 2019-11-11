@@ -4,6 +4,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {NewsSource} from '../../shared/news/news-source';
 import {Subscription} from 'rxjs';
 
+
 @Component({
   selector: 'app-news-admin',
   templateUrl: './news-admin.component.html',
@@ -20,6 +21,9 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
 
   errorSub: Subscription;
   errorMessage: String;
+
+  keySaved = false;
+  newsSaved = false;
 
   constructor(private newsService: NewsService) { }
 
@@ -44,6 +48,7 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
   onSaveAPIKey() {
     this.newsService.APIKey = this.APIKeyForm.value.APIKey;
     this.updateNewsSources();
+    this.keySaved = true;
   }
 
   onChange(event) {
@@ -52,6 +57,7 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
 
   onSelectedNews() {
     this.newsService.getNewsBySources(Array.from(this.selectedSources));
+    this.newsSaved = true;
   }
 
   onRemoveSource(source: NewsSource) {

@@ -12,6 +12,8 @@ export class VideoAdminComponent implements OnInit {
   videoForm: FormGroup;
   errorMessage: string;
 
+  videoSaved = false;
+
   constructor(private videoService: VideoService,
               private router: Router) { }
 
@@ -30,6 +32,7 @@ export class VideoAdminComponent implements OnInit {
     }
     const videoId = this.router.parseUrl(videoRaw).queryParamMap.get('v');
     this.videoService.saveVideo(videoId);
+    this.videoSaved = true;
   }
 
 }
