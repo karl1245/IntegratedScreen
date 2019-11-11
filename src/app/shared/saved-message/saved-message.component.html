@@ -1,0 +1,6 @@
+<span
+  [@saved]="saving ? 'in' : 'out'"
+  (@saved.done)="animationDone()"
+  class="text-success"
+  style="padding-left: 2em"
+>{{message}}</span>
