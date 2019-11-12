@@ -2,17 +2,17 @@
 <body>
 <div class="container-1">
   <div class="box-1">
-    <div class="Column" align="center"><h1>{{city}}</h1></div>
+    <div class="Column" *ngIf="showContent"><h1>{{city}}</h1></div>
   </div>
   <div class="box-2">
-    <div class="Column"> <h3>{{weather.main.temp | number:'1.0-0'}}° {{isMetric ? "C" : "F"}}</h3></div>
+    <div class="Column" *ngIf="showContent"><h3>{{weather.main.temp | number:'1.0-0'}}° {{isMetric ? "C" : "F"}}</h3></div>
   </div>
 </div>
 <div class="container-2">
   <div class="c2-box-1">
   </div>
   <div class="c2-box-2">
-    <div class="Column"> <h5>{{weather.weather[0].main | titlecase}}</h5></div>
+    <div class="Column" *ngIf="showContent"> <h5>{{weather.weather[0].main | titlecase}}</h5></div>
   </div>
 </div>
 </body>

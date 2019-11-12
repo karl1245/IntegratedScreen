@@ -17,7 +17,8 @@ function createWindow () {
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false
-    }
+    },
+
   });
 
   setTimeout(() => {
@@ -31,6 +32,7 @@ function createWindow () {
   }, 2000); // 1 second wasn't enough lol
 
   // Open the DevTools
+  mainWindow.webContents.toggleDevTools();
   mainWindow.maximize();
 
   mainWindow.on('closed', function () {
@@ -40,7 +42,6 @@ function createWindow () {
 
 app.on('ready', () => {
   createWindow();
-  autoUpdater.checkForUpdatesAndNotify();
 });
 
 // autoupdater
@@ -51,14 +52,13 @@ autoUpdater.on('update-downloaded', (info) => {
   mainWindow.webContents.send('update_downloaded');
 });
 
-
-
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') app.quit()
 })
 
 app.on('activate', function () {
   if (mainWindow === null) createWindow()
+  autoUpdater.checkForUpdatesAndNotify();
 })
 
 ipcMain.on('app_version', (event) => {
