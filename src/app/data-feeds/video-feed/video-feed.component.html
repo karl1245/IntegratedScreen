@@ -1,11 +1,8 @@
-<h2>Video</h2>
 <div class="container">
   <div class="row">
-        <youtube-player
-          [videoId]="id"
-          (ready)="savePlayer($event)"
-          (change)="onStateChange($event)"
-          [playerVars]="playerVars">
-        </youtube-player>
+    <!-- TODO: sizing -->
+    <iframe width="480" height="360"
+            [src]='videoUrl | safe'>
+    </iframe>
   </div>
 </div>

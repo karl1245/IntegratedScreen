@@ -26,12 +26,8 @@ export class VideoAdminComponent implements OnInit {
   }
 
   onSaveVideo(){
-    let videoRaw = this.videoForm.value.videoLocation;
-    if (videoRaw.substring(0, "https://".length) == "https://") {
-      videoRaw = videoRaw.substring("https://".length, videoRaw.length);
-    }
-    const videoId = this.router.parseUrl(videoRaw).queryParamMap.get('v');
-    this.videoService.saveVideo(videoId);
+    const videoRaw = this.videoForm.value.videoLocation;
+    this.videoService.saveVideo(videoRaw);
     this.videoSaved = true;
   }
 

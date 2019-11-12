@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {UpdateDataTimerService} from '../shared/updateDataTimer.service';
 
 @Component({
@@ -6,11 +6,18 @@ import {UpdateDataTimerService} from '../shared/updateDataTimer.service';
   templateUrl: './data-feeds.component.html',
   styleUrls: ['./data-feeds.component.css']
 })
-export class DataFeedsComponent implements OnInit {
+export class DataFeedsComponent implements OnInit, OnDestroy {
 
   constructor(private updateTimerService: UpdateDataTimerService) { }
 
   ngOnInit() {
+    this.updateTimerService.startTimer()
   }
+
+  ngOnDestroy() {
+    this.updateTimerService.stopTimer();
+  }
+
+
 
 }

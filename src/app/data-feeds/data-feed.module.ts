@@ -8,6 +8,7 @@ import {NgxYoutubePlayerModule} from 'ngx-youtube-player';
 import {TransportComponent} from  './transport-feed/transport.component';
 import {RouterModule} from '@angular/router';
 import {ClockComponent} from './clock/clock.component';
+import {SafePipe} from './video-feed/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -16,12 +17,12 @@ import {ClockComponent} from './clock/clock.component';
     DataFeedsComponent,
     VideoFeedComponent,
     TransportComponent,
-    ClockComponent
+    ClockComponent,
+    SafePipe
   ],
   imports: [
     RouterModule,
-    CommonModule,
-    NgxYoutubePlayerModule.forRoot(),
+    CommonModule
 
   ],
   exports: [
@@ -29,7 +30,6 @@ import {ClockComponent} from './clock/clock.component';
     NewsComponent,
     DataFeedsComponent,
     VideoFeedComponent,
-    NgxYoutubePlayerModule,
     ClockComponent
   ]
 })

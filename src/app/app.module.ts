@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from './material/material.module';
 import {UpdateDataTimerService} from './shared/updateDataTimer.service';
 import {StorageService} from './shared/storage.service';
-import { SavedMessageComponent } from './shared/saved-message/saved-message.component';
+import { SavedMessageComponent } from './admin-screen/saved-message/saved-message.component';
 
 
 @NgModule({

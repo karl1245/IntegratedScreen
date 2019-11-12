@@ -10,7 +10,7 @@ import {CountryNamePipe} from '../shared/country-name.pipe';
 import { TransportAdminComponent } from './transport-admin/transport-admin.component';
 import {MaterialModule} from '../material/material.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
-import {SavedMessageComponent} from '../shared/saved-message/saved-message.component';
+import {SavedMessageComponent} from './saved-message/saved-message.component';
 
 @NgModule({
   declarations: [

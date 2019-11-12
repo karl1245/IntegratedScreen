@@ -8,19 +8,9 @@ import { VideoService } from '../../shared/video/video.service';
   styleUrls: ['./video-feed.component.css', '../data-feeds.component.css']
 })
 export class VideoFeedComponent implements OnInit {
-  
   id: string;
-  playerVars = {
-    cc_lang_pref: 'en',
-    autoplay: 1,
-    loop: 1,
-    playlist: this.id
-
-  };
+  videoUrl: string;
   videoSub: Subscription;
-
-  private player;
-  private ytEvent;
 
   constructor(private videoService: VideoService) { }
 
@@ -28,23 +18,13 @@ export class VideoFeedComponent implements OnInit {
     this.id = this.videoService.currentVideoId;
     this.videoSub = this.videoService.newVideo.subscribe(videoId => {
       this.id = videoId;
-      this.playerVars.playlist = videoId;
+      this.videoUrl = "https://www.youtube.com/embed/" + this.id;
+      this.videoUrl += ("?playlist=" + this.id);
+      this.videoUrl += "&controls=0";
+      this.videoUrl += "&loop=1";
+      this.videoUrl += "&autoplay=1";
+      this.videoUrl += "&modestbranding=1";
+      this.videoUrl += "&rel=0";
     });
   }
-
-  onStateChange(event) {
-    this.ytEvent = event.data;
-  }
-  savePlayer(player) {
-    this.player = player;
-  }
-
-  playVideo() {
-    this.player.playVideo();
-  }
-
-  pauseVideo() {
-    this.player.pauseVideo();
-  }
-
 }
