@@ -1,5 +1,8 @@
 import {NewsSource} from './news/news-source';
 
+/**
+ * Saves data to local storage.
+ */
 export class StorageService {
   constructor() {}
 
@@ -49,21 +52,21 @@ export class StorageService {
   }
 
   /**
-   * Reads video id from storage
-   * Returns video id or empty string.
+   * Reads video url from storage
+   * Returns video url or empty string.
    */
   getVideo() {
-    const video = localStorage.getItem("videoId");
+    const video = localStorage.getItem("videoUrl");
     return video != null ? video : "";
   }
 
 
   /**
-   * Save video id to local storage
-   * @param videoId - v parameter of youtube link.
+   * Save video url to local storage
+   * @param videoIUrl - Youtube or Vimeo video link.
    */
-  saveVideo(videoId: string) {
-    localStorage.setItem("videoId", videoId);
+  saveVideo(videoUrl: string) {
+    localStorage.setItem("videoUrl", videoUrl);
   }
 
   /**

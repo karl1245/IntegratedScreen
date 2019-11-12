@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { VideoService } from '../../shared/video/video.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-video-admin',
@@ -14,14 +13,13 @@ export class VideoAdminComponent implements OnInit {
 
   videoSaved = false;
 
-  constructor(private videoService: VideoService,
-              private router: Router) { }
+  constructor(private videoService: VideoService) { }
 
   ngOnInit() {
-    const currentVideoId = this.videoService.currentVideoId;
+    const currentVideo = this.videoService.getVideoRaw();
     this.videoForm = new FormGroup({
       'videoLocation': new FormControl(
-        currentVideoId != "" ? "https://www.youtube.com/watch?v=" + currentVideoId : "")
+        currentVideo != "" ? currentVideo : "")
     });
   }
 

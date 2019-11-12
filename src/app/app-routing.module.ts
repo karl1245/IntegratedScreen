@@ -7,7 +7,6 @@ import {DataFeedsComponent} from './data-feeds/data-feeds.component';
 import {VideoAdminComponent} from './admin-screen/video-admin/video-admin.component';
 import {TransportAdminComponent} from './admin-screen/transport-admin/transport-admin.component';
 
-//TODO: authentication
 const routes: Routes = [
   {
     path: 'admin',
