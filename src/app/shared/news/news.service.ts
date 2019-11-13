@@ -1,9 +1,9 @@
-import {Injectable, OnInit} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {take} from 'rxjs/operators';
 import {Article} from './article';
 import {NewsSource} from './news-source';
-import {BehaviorSubject, Subject, Subscription, timer} from 'rxjs';
+import {BehaviorSubject, Subject} from 'rxjs';
 import {StorageService} from '../storage.service';
 
 @Injectable({

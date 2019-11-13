@@ -12,7 +12,6 @@
       <div class="custom-button">
         <button mat-raised-button color="primary" type="submit">Save Key</button>
         <app-saved-message
-          [message]="'API Key Saved'"
           [saving]="keySaved"
           (saved)="keySaved=false"
         ></app-saved-message>
@@ -32,7 +31,7 @@
         </mat-expansion-panel-header>
         <p>Country: {{s.country | countryName}}</p>
         <p>{{s.description}}</p>
-        <button type="button" mat-raised-button color="warn" (click)="onRemoveSource(s)">
+        <button type="button" mat-button color="warn" (click)="onRemoveSource(s)">
           Click to Remove
         </button>
       </mat-expansion-panel>
@@ -46,7 +45,6 @@
     <div class="custom-button">
       <button mat-raised-button color="primary" type="submit">Save Sources</button>
       <app-saved-message
-        [message]="'News Saved'"
         [saving]="newsSaved"
         (saved)="newsSaved=false"
       ></app-saved-message>

@@ -15,8 +15,8 @@ export class Weather {
   main:
     {
       temp: number;
-      pressure:number;
-      humidity:number;
+      pressure: number;
+      humidity: number;
       temp_min: number;
       temp_max: number
     };
@@ -44,5 +44,5 @@ export class Weather {
       speed: number;
       deg: number;
       gust: number
-    }
+    };
 }

@@ -20,7 +20,8 @@ export class WeatherAdminComponent implements OnInit, OnDestroy {
   keySaved = false;
   citySaved = false;
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService) {
+  }
 
   ngOnInit() {
     this.APIkey = this.weatherService.APIKey;
@@ -46,12 +47,10 @@ export class WeatherAdminComponent implements OnInit, OnDestroy {
     this.keySaved = true;
   }
 
-  onSaveWeather () {
+  onSaveWeather() {
     const city = this.weatherReqForm.value.city;
     const isMetric: boolean = this.weatherReqForm.value.isMetric;
-
     this.weatherService.getWeather(city, isMetric);
-
   }
 
   onSaveWeatherWithMessage() {
@@ -62,7 +61,4 @@ export class WeatherAdminComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.errorSub.unsubscribe();
   }
-
-
-
 }

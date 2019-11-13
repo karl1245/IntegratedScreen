@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {AdminScreenComponent} from './admin-screen/admin-screen.component';
 import {NewsAdminComponent} from './admin-screen/news-admin/news-admin.component';
 import {WeatherAdminComponent} from './admin-screen/weather-admin/weather-admin.component';
@@ -16,7 +16,8 @@ const routes: Routes = [
       {path: 'weather', component: WeatherAdminComponent},
       {path: 'video', component: VideoAdminComponent},
       {path: 'transport', component: TransportAdminComponent}
-    ]},
+    ]
+  },
   {path: '', component: DataFeedsComponent},
   {path: '**', redirectTo: ''} //TODO: maybe later direct to pageNotFound?
 ];
@@ -25,4 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

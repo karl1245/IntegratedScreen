@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
 import {StorageService} from '../storage.service';
 import {Router} from '@angular/router';
 
@@ -19,9 +19,9 @@ export class VideoService {
   }
 
   /**
-  * Saves video as new video in data feed
-  * @param videoRaw - url of the video.
-  */
+   * Saves video as new video in data feed
+   * @param videoRaw - url of the video.
+   */
   saveVideo(videoRaw: string) {
     this.storageService.saveVideo(videoRaw);
 
@@ -33,19 +33,19 @@ export class VideoService {
    * Gets the video id out of input url and returns it.
    * @param videoRaw - string value of the youtube video (example: https://www.youtube.com/watch?v=nWpSeuPzsKI).
    */
-  private processUrl(videoRaw:string) {
+  private processUrl(videoRaw: string) {
     let videoProcessed = videoRaw;
 
-    if (videoProcessed.includes("https://")) {
-      videoProcessed = videoProcessed.substring("https://".length, videoProcessed.length);
+    if (videoProcessed.includes('https://')) {
+      videoProcessed = videoProcessed.substring('https://'.length, videoProcessed.length);
     }
 
-    if (videoProcessed.includes("youtube")) {
+    if (videoProcessed.includes('youtube')) {
       const videoId = this.router.parseUrl(videoProcessed).queryParamMap.get('v');
       return this.getYoutubeLink(videoId);
     } else {
-      let videoId = videoProcessed.split("?")[0];
-      videoId = videoId.split("/")[videoId.split("/").length - 1];
+      let videoId = videoProcessed.split('?')[0];
+      videoId = videoId.split('/')[videoId.split('/').length - 1];
       return this.getVimeoLink(videoId);
     }
   }
@@ -55,13 +55,13 @@ export class VideoService {
    * @param id - id of the Youtube video.
    */
   private getYoutubeLink(id: string) {
-    let videoUrl = "https://www.youtube.com/embed/" + id;
-    videoUrl += ("?playlist=" + id);
-    videoUrl += "&controls=0";
-    videoUrl += "&loop=1";
-    videoUrl += "&autoplay=1";
-    videoUrl += "&modestbranding=1";
-    videoUrl += "&rel=0";
+    let videoUrl = 'https://www.youtube.com/embed/' + id;
+    videoUrl += ('?playlist=' + id);
+    videoUrl += '&controls=0';
+    videoUrl += '&loop=1';
+    videoUrl += '&autoplay=1';
+    videoUrl += '&modestbranding=1';
+    videoUrl += '&rel=0';
     return videoUrl;
   }
 
@@ -70,13 +70,13 @@ export class VideoService {
    * @param id - if of the Vimeo video.
    */
   private getVimeoLink(id: string) {
-    let videoUrl = "https://player.vimeo.com/video/" + id;
-    videoUrl += "?autoplay=1";
-    videoUrl += "&loop=1";
-    videoUrl += "&title=0";
-    videoUrl += "&byline=0";
-    videoUrl += "&portrait=0";
-    videoUrl += "&quality=1080p";
+    let videoUrl = 'https://player.vimeo.com/video/' + id;
+    videoUrl += '?autoplay=1';
+    videoUrl += '&loop=1';
+    videoUrl += '&title=0';
+    videoUrl += '&byline=0';
+    videoUrl += '&portrait=0';
+    videoUrl += '&quality=1080p';
     return videoUrl;
   }
 

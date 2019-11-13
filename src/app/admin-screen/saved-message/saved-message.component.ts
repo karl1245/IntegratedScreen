@@ -10,7 +10,7 @@ import {savingAnimation} from '../../shared/animations';
   ]
 })
 export class SavedMessageComponent implements OnInit {
-  @Input() message: string;
+  @Input() message: string = 'Saved';
   @Input() saving: boolean;
   @Output() saved = new EventEmitter();
 
@@ -19,7 +19,8 @@ export class SavedMessageComponent implements OnInit {
     this.saved.emit();
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

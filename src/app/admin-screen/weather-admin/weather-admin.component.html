@@ -9,11 +9,9 @@
         matInput
         placeholder="API Key">
     </mat-form-field>
-    <p *ngIf="">Saved API Key</p>
     <div class="custom-button">
       <button mat-raised-button color="primary" type="submit">Save Key</button>
       <app-saved-message
-        [message]="'API Key Saved'"
         [saving]="keySaved"
         (saved)="keySaved=false"
       ></app-saved-message>
@@ -45,7 +43,6 @@
     <div class="custom-button">
       <button mat-raised-button color="primary" type="submit">Save City</button>
       <app-saved-message
-        [message]="'City Saved'"
         [saving]="citySaved"
         (saved)="citySaved=false"
       ></app-saved-message>

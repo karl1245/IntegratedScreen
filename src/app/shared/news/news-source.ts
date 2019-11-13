@@ -5,5 +5,5 @@ export class NewsSource {
   url: string;
   category: string;
   language: string;
-  country: string
+  country: string;
 }
