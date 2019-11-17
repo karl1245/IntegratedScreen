@@ -11,8 +11,10 @@ import {TransportAdminComponent} from './transport-admin/transport-admin.compone
 import {MaterialModule} from '../material/material.module';
 import {SidenavComponent} from './sidenav/sidenav.component';
 import {SavedMessageComponent} from './saved-message/saved-message.component';
-import {InformationModalComponent} from './information-modal/information-modal.component';
+import {InfoModalComponent} from './info-modal/info-modal.component';
 import {MatDialogModule} from '@angular/material';
+import {InfoModalService} from '../shared/info-modal.service';
+import {StorageService} from '../shared/storage.service';
 
 @NgModule({
   declarations: [
@@ -24,14 +26,16 @@ import {MatDialogModule} from '@angular/material';
     TransportAdminComponent,
     SidenavComponent,
     SavedMessageComponent,
-    InformationModalComponent
+    InfoModalComponent
   ],
   imports: [
     RouterModule,
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+  ],
+  providers: [
   ],
   exports: [
     WeatherAdminComponent,
@@ -43,7 +47,7 @@ import {MatDialogModule} from '@angular/material';
     SidenavComponent
   ],
   entryComponents: [
-    InformationModalComponent
+    InfoModalComponent
   ]
 })
 export class AdminScreenModule {

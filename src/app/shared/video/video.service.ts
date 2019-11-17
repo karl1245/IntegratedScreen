@@ -3,14 +3,15 @@ import {BehaviorSubject} from 'rxjs';
 import {StorageService} from '../storage.service';
 import {Router} from '@angular/router';
 
-@Injectable()
 /**
  * Handles embedded video player related tasks.
  */
+@Injectable({
+  providedIn: 'root'
+})
 export class VideoService {
   currentVideo: string;
   newVideo = new BehaviorSubject(this.currentVideo);
-
 
   constructor(private storageService: StorageService, private router: Router) {
     const savedVideo = this.storageService.getVideo();
@@ -43,10 +44,12 @@ export class VideoService {
     if (videoProcessed.includes('youtube')) {
       const videoId = this.router.parseUrl(videoProcessed).queryParamMap.get('v');
       return this.getYoutubeLink(videoId);
-    } else {
+    } else if (videoProcessed.includes('vimeo')){
       let videoId = videoProcessed.split('?')[0];
       videoId = videoId.split('/')[videoId.split('/').length - 1];
       return this.getVimeoLink(videoId);
+    } else {
+      return videoProcessed;
     }
   }
 

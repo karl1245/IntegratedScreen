@@ -10,7 +10,7 @@ import {StorageService} from '../storage.service';
   providedIn: 'root'
 })
 /**
- * Uses NewsSource API
+ * Uses News API
  * https://newsapi.org/
  */
 export class NewsService {

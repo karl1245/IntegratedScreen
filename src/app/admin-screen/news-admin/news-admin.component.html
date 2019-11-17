@@ -1,5 +1,6 @@
 <div>
   <h3 class="custom-header">News</h3>
+  <button mat-raised-button color="primary" (click)="openInfo()">INFO</button>
   <form [formGroup]="APIKeyForm" (ngSubmit)="onSaveAPIKey()" class="form-container">
     <mat-form-field>
       <input

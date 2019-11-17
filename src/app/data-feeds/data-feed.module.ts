@@ -22,7 +22,6 @@ import {SafePipe} from './video-feed/safe.pipe';
   imports: [
     RouterModule,
     CommonModule
-
   ],
   exports: [
     WeatherComponent,

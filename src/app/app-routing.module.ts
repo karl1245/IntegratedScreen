@@ -19,7 +19,7 @@ const routes: Routes = [
     ]
   },
   {path: '', component: DataFeedsComponent},
-  {path: '**', redirectTo: ''} //TODO: maybe later direct to pageNotFound?
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({

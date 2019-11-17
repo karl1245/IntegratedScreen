@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {WeatherService} from '../../shared/weather/weather.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {InfoModalService} from '../../shared/info-modal.service';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-weather-admin',
@@ -20,7 +22,9 @@ export class WeatherAdminComponent implements OnInit, OnDestroy {
   keySaved = false;
   citySaved = false;
 
-  constructor(private weatherService: WeatherService) {
+  constructor(private weatherService: WeatherService,
+              private infoModalService: InfoModalService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -56,6 +60,10 @@ export class WeatherAdminComponent implements OnInit, OnDestroy {
   onSaveWeatherWithMessage() {
     this.onSaveWeather();
     this.citySaved = true;
+  }
+
+  openInfo() {
+    this.infoModalService.openInfoWeather(this.dialog);
   }
 
   ngOnDestroy() {

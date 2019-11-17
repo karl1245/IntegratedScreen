@@ -7,7 +7,7 @@ import {UpdateDataTimerService} from '../shared/updateDataTimer.service';
   styleUrls: ['./data-feeds.component.css']
 })
 export class DataFeedsComponent implements OnInit, OnDestroy {
-
+  // TODO: maybe move timer to app.component
   constructor(private updateTimerService: UpdateDataTimerService) { }
 
   ngOnInit() {

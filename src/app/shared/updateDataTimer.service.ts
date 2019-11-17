@@ -2,10 +2,14 @@ import {HttpClient} from '@angular/common/http';
 import {Subscription, timer} from 'rxjs';
 import {WeatherService} from './weather/weather.service';
 import {NewsService} from './news/news.service';
+import {Injectable} from '@angular/core';
 
 /**
  * Updates data feeds data after 30 minutes.
  */
+@Injectable({
+  providedIn: 'root'
+})
 export class UpdateDataTimerService {
   private timerSub: Subscription;
 

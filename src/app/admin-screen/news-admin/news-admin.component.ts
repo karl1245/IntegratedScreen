@@ -3,6 +3,8 @@ import {NewsService} from '../../shared/news/news.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {NewsSource} from '../../shared/news/news-source';
 import {Subscription} from 'rxjs';
+import {InfoModalService} from '../../shared/info-modal.service';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -25,7 +27,9 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
   keySaved = false;
   newsSaved = false;
 
-  constructor(private newsService: NewsService) { }
+  constructor(private newsService: NewsService,
+              private infoModalService: InfoModalService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.APIkey = this.newsService.APIKey;
@@ -71,6 +75,10 @@ export class NewsAdminComponent implements OnInit, OnDestroy {
     }, error => {
       this.newsService.errorSubject.next(error.error.message);
     });
+  }
+
+  openInfo() {
+    this.infoModalService.openInfoNews(this.dialog);
   }
 
   ngOnDestroy() {

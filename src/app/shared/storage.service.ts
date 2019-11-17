@@ -1,8 +1,12 @@
 import {NewsSource} from './news/news-source';
+import {Injectable} from '@angular/core';
 
 /**
  * Saves data to local storage.
  */
+@Injectable({
+  providedIn: 'root'
+})
 export class StorageService {
   constructor() {}
 

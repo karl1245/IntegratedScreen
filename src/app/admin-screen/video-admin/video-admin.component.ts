@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { VideoService } from '../../shared/video/video.service';
 import {MatDialog} from '@angular/material';
-import {InformationModalComponent} from '../information-modal/information-modal.component';
+import {InfoModalService} from '../../shared/info-modal.service';
 
 @Component({
   selector: 'app-video-admin',
@@ -15,7 +15,9 @@ export class VideoAdminComponent implements OnInit {
 
   videoSaved = false;
 
-  constructor(private videoService: VideoService, public dialog: MatDialog) { }
+  constructor(private videoService: VideoService,
+              public dialog: MatDialog,
+              public infoModalService: InfoModalService) { }
 
   ngOnInit() {
     const currentVideo = this.videoService.getVideoRaw();
@@ -32,14 +34,6 @@ export class VideoAdminComponent implements OnInit {
   }
 
   openInfo() {
-    const header = "Hello World!";
-    const info = " Android is an open source software stack created for a wide array of devices with different form factors. Android's primary purpose is to create an open software platform available for carriers, OEMs, and developers to make their innovative ideas a reality and to introduce a successful, real-world product that improves the mobile experience for users.\n" +
-      "\n" +
-      "Android is designed so that there's no central point of failure, where one industry player restricts or controls the innovations of another. The result is a full, production-quality consumer product with source code open for customization and porting. ";
-    const dialogRef = this.dialog.open(InformationModalComponent, {
-      width: '250px',
-      data: {header: header, info: info}
-    });
+    this.infoModalService.openInfoVideo(this.dialog);
   }
-
 }

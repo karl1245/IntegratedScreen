@@ -31,12 +31,7 @@ import {StorageService} from './shared/storage.service';
     MaterialModule
   ],
   providers: [
-    NewsService,
-    WeatherService,
-    TransportService,
-    VideoService,
-    UpdateDataTimerService,
-    StorageService
+    UpdateDataTimerService
   ],
   bootstrap: [AppComponent]
 })
