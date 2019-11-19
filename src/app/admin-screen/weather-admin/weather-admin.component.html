@@ -1,6 +1,6 @@
-<div>
+<div class="admin-div">
   <h3 class="custom-header">Weather</h3>
-  <button mat-raised-button color="primary" (click)="openInfo()">INFO</button>
+  <button mat-button color="primary" (click)="openInfo()">Info</button>
   <form [formGroup]="APIKeyForm" (ngSubmit)="onSaveAPIKey()" class="form-container">
     <mat-form-field>
       <input

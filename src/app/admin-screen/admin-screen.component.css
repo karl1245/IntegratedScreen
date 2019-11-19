@@ -1,19 +1,11 @@
 .form-container {
   display: flex;
   flex-direction: column;
-  padding-left: 8%;
-  padding-right: 8%;
-  padding-top: 1em;
+  padding-top: 2em;
 }
 
 .form-container > * {
   width: 100%;
-}
-
-.custom-header {
-  display: flex;
-  flex-direction: column;
-  padding: 1em 8%;
 }
 
 .custom-button {
@@ -22,6 +14,19 @@
 }
 
 .custom-panel {
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.custom-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-info {
+  display: inline-block;
+}
+
+.admin-div {
+  padding: 2em 8%;
 }

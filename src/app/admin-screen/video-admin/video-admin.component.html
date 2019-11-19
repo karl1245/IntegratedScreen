@@ -1,6 +1,8 @@
-<div>
-  <h3 class="custom-header">Video</h3>
-  <button mat-raised-button color="primary" (click)="openInfo()">INFO</button>
+<div class="admin-div">
+  <div class="header-info">
+    <h3 class="custom-header">Video</h3>
+    <button mat-button color="primary" (click)="openInfo()">Info</button>
+  </div>
   <form [formGroup]="videoForm" (ngSubmit)="onSaveVideo()" class="form-container">
     <mat-form-field>
       <input

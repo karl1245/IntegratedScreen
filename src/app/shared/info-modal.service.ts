@@ -22,7 +22,8 @@ export class InfoModalService {
         'This uses the News API (https://newsapi.org/).',
         'The API key is needed to use the News feed.',
         'You can get the key from here "https://newsapi.org/account".',
-        'You can select the news site where the get the top news.'
+        'You can select the news site where the get the top news.',
+        'Click on the news source to see more information about it or to remove it.'
       ]
     },
     weather: {
