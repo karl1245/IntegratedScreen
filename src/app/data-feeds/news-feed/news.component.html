@@ -1,9 +1,17 @@
-<h2>News</h2>
-<div>
-  <div *ngFor="let article of articlesToDisplay">
-    <h3>{{article.title}}</h3>
-    <p>{{article.description}}</p>
-    <p>Published {{article.publishedAt}} by {{article.source.name}}</p>
-    <hr>
-  </div>
-</div>
+<mat-carousel
+  [autoplay]="autoplay"
+  [loop]="loop"
+  [interval]="interval"
+>
+  <mat-carousel-slide
+    *ngFor="let article of articlesToDisplay"
+    [hideOverlay]="hideOverlay"
+    [overlayColor]="overlayColor"
+  >
+      <img src="{{article.urlToImage}}">
+      <h3>{{article.title}}</h3>
+      <h4>{{article.description}}</h4>
+      <h5>Published by {{article.source.name}}</h5>
+
+  </mat-carousel-slide>
+</mat-carousel>

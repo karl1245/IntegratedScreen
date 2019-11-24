@@ -8,6 +8,7 @@ import {TransportComponent} from './transport-feed/transport.component';
 import {RouterModule} from '@angular/router';
 import {ClockComponent} from './clock/clock.component';
 import {SafePipe} from './video-feed/safe.pipe';
+import {MatCarouselModule} from '@ngmodule/material-carousel';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {SafePipe} from './video-feed/safe.pipe';
   ],
   imports: [
     RouterModule,
-    CommonModule
+    CommonModule,
+    MatCarouselModule
   ],
   exports: [
     WeatherComponent,

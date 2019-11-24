@@ -14,6 +14,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    frame: false,
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false
@@ -32,7 +33,6 @@ function createWindow () {
   }, 2000); // 1 second wasn't enough lol
 
   // Open the DevTools
-  mainWindow.webContents.toggleDevTools();
   mainWindow.maximize();
 
   mainWindow.on('closed', function () {

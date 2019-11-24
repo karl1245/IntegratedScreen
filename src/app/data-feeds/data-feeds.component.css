@@ -25,11 +25,10 @@
 }
 
 .container-3{
-  height: 30%;
+  height: 5%;
   display:flex;
   flex-wrap:wrap;
   justify-content:space-between;
-  overflow: auto;
 }
 
 .container-1 div, .container-2 div, .container-3 div{
@@ -38,17 +37,17 @@
 }
 
 .box-1{
-  flex:2;
+  flex:1;
   order:1;
 }
 
 .box-2{
-  flex:2;
+  flex:1.5;
   order:2;
 }
 
 .box-3{
-  flex:11;
+  flex:13;
   order: 3;
 }
 
@@ -68,8 +67,8 @@
 }
 
 .c3-box-1{
-  flex:4;
-  order: 2;
+  flex:1;
+  order: 1;
 }
 
 body{
@@ -79,10 +78,6 @@ body{
   -webkit-animation: Gradient 7s ease infinite;
   -moz-animation: Gradient 7s ease infinite;
   animation: Gradient 7s ease infinite;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #c6c6cc;
 }
 
 @-webkit-keyframes Gradient {

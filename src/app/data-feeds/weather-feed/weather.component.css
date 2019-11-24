@@ -1,5 +1,5 @@
 .container-1{
-  height: 10%;
+  height: 50%;
   display:flex;
   /*
   align-items:flex-start;
@@ -22,6 +22,7 @@
   /*justify-content:space-between;*/
 }
 
+
 .container-1 div, .container-2 div{
   //border:1px #ccc solid;
   //padding:10px;
@@ -40,19 +41,18 @@
 .c2-box-1{
   flex:1;
   order: 1;
-}
-
-.c2-box-2{
-  flex:1;
-  order: 2;
-  padding: 30px;
+  padding: 0;
 }
 
 body{
   background: transparent;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #c6c6cc;
+.img {
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
 }
+
+
 

@@ -1,19 +1,37 @@
-h1, h2, h3, h4, h5, h6, p {
-  color: #c6c6cc;
+h3 {font-size: 250%}
+h4 {font-size: 150%}
+h5 {font-size: 100%}
+
+
+.container-1{
+  height: 10%;
+  display:flex;
+  /*
+  align-items:flex-start;
+  align-items:flex-end;
+  align-items:center;
+
+  flex-direction:column;
+  */
 }
 
-.post-list {
-  animation: slide infinite 3s alternate;
+.box-1{
+  flex:1;
+  order:1;
 }
 
-@keyframes slide {
-  0% {
-    margin-left: 0px;
-  }
-  50% {
-    margin-left: -100px;
-  }
-  100% {
-    margin-left: -200px;
-  }
+.box-2{
+  flex:1;
+  order:2;
+}
+
+body{
+  background: transparent;
+}
+
+img {
+  max-height: 350px;
+  max-width: 350px;
+  float: left;
+  padding-right: 50px;
 }
