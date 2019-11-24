@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5, h6, p, a {
+  color: #ffffff;
+}
+
 .container-1{
   height: 50%;
   display:flex;
@@ -36,6 +40,11 @@
 .box-2{
   flex:1;
   order:2;
+}
+
+.box-3{
+  flex:1;
+  order:3;
 }
 
 .c2-box-1{

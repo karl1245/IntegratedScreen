@@ -1,7 +1,12 @@
+h1, h2, h3, h4, h5, h6, p, a {
+  color: #ffffff;
+}
+
 .container {
+  backdrop-filter: blur(5px);
   position:relative;
   padding-bottom:56.25%;
-  padding-top:30px;
+  padding-top:60px;
   height:0;
   overflow:hidden;
 }

@@ -1,5 +1,10 @@
+h1, h2, h3, h4, h5, h6, p, a {
+  color: #ffffff;
+}
+
 .match-parent {
     width: 70%;
     height: 70%;
+  backdrop-filter: blur(5px);
   }
 
