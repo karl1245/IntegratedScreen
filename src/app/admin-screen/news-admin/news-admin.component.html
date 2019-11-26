@@ -30,6 +30,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>{{s.name}}</mat-panel-title>
         </mat-expansion-panel-header>
+        <p>{{s.url}}</p>
         <p>Country: {{s.country | countryName}}</p>
         <p>{{s.description}}</p>
         <button type="button" mat-button color="warn" (click)="onRemoveSource(s)">

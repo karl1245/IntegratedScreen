@@ -1,7 +1,9 @@
 <div class="info-modal">
   <h1 mat-dialog-title>{{data.header}}</h1>
+  <p>{{data.headerInfo}}</p>
   <div mat-dialog-content *ngFor="let paragraph of data.info">
-    <p>{{paragraph}}</p>
+    <h6 *ngIf="paragraph.header.length != 0">{{paragraph.header}}</h6>
+    <p *ngFor="let line of paragraph.info">{{line}}</p>
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="dialogRef.close()">Close</button>
