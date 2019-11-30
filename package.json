@@ -1,8 +1,8 @@
 {
   "name": "integrated-screen",
-  "author": "TÜ",
+  "author": "TÜ <tvp@tü.ee>",
   "description": "An integrated screen for real-time information",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "license": "MIT",
   "main": "main.js",
   "repository": {
@@ -31,20 +31,35 @@
         {
           "provider": "github",
           "vPrefixedTagName": "true",
-          "token": "e5f3b0ea1d14297e7d9c88f772d84fa80b4486c3"
+          "token": "c452d72df54c8a000243dbb6bf5c17b1439bfaf6"
         }
       ],
       "target": [
         "nsis"
       ]
+    },
+    "linux": {
+      "publish": [
+        {
+          "provider": "github",
+          "vPrefixedTagName": "true",
+          "token": "c452d72df54c8a000243dbb6bf5c17b1439bfaf6"
+        }
+      ],
+      "target": {
+        "target": "appimage",
+        "arch": [
+          "armv7l"
+        ]
+      }
     }
   },
   "scripts": {
     "ng": "ng",
     "release": "build",
     "start": "ng serve",
-    "publish": "electron-builder --publish always",
-    "dist": "electron-builder",
+    "publish": "electron-builder --linux --publish always",
+    "dist": "electron-builder -l",
     "postinstall": "install-app-deps",
     "build": "ng build --prod",
     "test": "ng test",
