@@ -1,0 +1,26 @@
+<div class="admin-div">
+  <div class="header-info">
+    <h3 class="custom-header">Airport</h3>
+    <button mat-button color="primary" (click)="openInfo()">Info</button>
+  </div>
+  <form [formGroup]="airportForm" (ngSubmit)="onSaveAorD()" class="form-container">
+    <mat-form-field>
+      <mat-select placeholder="Arrivals or Departures" formControlName="isArrival" id="isArrival">
+        <mat-option [value]="true">Arrivals</mat-option>
+        <mat-option [value]="false">Departures</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      <p>Error: </p>
+      <p>{{errorMessage}}</p>
+    </div>
+    <div class="custom-button">
+      <button mat-raised-button color="primary" type="submit">Save</button>
+      <app-saved-message
+        [saving]="airportSaved"
+        (saved)="airportSaved=false"
+      ></app-saved-message>
+    </div>
+  </form>
+</div>

@@ -113,4 +113,21 @@ export class StorageService {
   saveTransportAPIKey(APIKey: string) {
     localStorage.setItem("transportAPIKey", APIKey);
   }
+
+  /**
+   * Saves whether aiport feed displays arrivals or departures.
+   * @param isArrival -boolean value whether is arrivals or departures.
+   */
+  saveAirport(isArrival: boolean) {
+    localStorage.setItem("isArrival", JSON.stringify({isArrival: isArrival}));
+  }
+
+  /**
+   * Reads airport options from storage.
+   * Returns boolean isArrival or if missing returns true.
+   */
+  getAirport() {
+    const airportSettings = localStorage.getItem("isArrival");
+    return airportSettings != null ? JSON.parse(airportSettings).isArrival : true;
+  }
 }

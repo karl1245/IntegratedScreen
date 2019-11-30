@@ -65,6 +65,20 @@ export class InfoModalService {
         }
       ]
     },
+    airport: {
+      header: 'Airport',
+      headerInfo: 'Here you can select departures or arrivals in the Tallinn airport.',
+      info: [
+        {
+          header:
+            'Instructions',
+          info: [
+            'Select Arrivals or Departures from the dropdown and click save.',
+            'Info is from "https://www.tallinn-airport.ee/en/flight-info/realtime-flights/".'
+          ]
+        }
+      ]
+    },
   };
 
   /**
@@ -102,5 +116,13 @@ export class InfoModalService {
    */
   openInfoNews(dialog: MatDialog) {
     this.openInfo(dialog, this.dialogs.news);
+  }
+
+  /**
+   * Opens info model with airport admin screen info.
+   * @param dialog - MatDialog of the feed component.
+   */
+  openInfoAirport(dialog: MatDialog) {
+    this.openInfo(dialog, this.dialogs.airport);
   }
 }

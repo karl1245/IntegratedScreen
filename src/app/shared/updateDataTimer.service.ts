@@ -1,8 +1,8 @@
-import {HttpClient} from '@angular/common/http';
 import {Subscription, timer} from 'rxjs';
 import {WeatherService} from './weather/weather.service';
 import {NewsService} from './news/news.service';
 import {Injectable} from '@angular/core';
+import {AirportService} from './airport/airport.service';
 
 /**
  * Updates data feeds data after 30 minutes.
@@ -15,7 +15,8 @@ export class UpdateDataTimerService {
 
   constructor (
     private weatherService: WeatherService,
-    private newsService: NewsService
+    private newsService: NewsService,
+    private airportService: AirportService
   ) {}
 
   /**
@@ -27,6 +28,7 @@ export class UpdateDataTimerService {
     this.timerSub = timer(0, 1800000).subscribe(() => {
       this.newsService.getNews();
       this.weatherService.getWeather(this.weatherService.currentCity, this.weatherService.isMetric);
+      this.airportService.getAirport();
       console.log("Updating feeds!");
     });
   }

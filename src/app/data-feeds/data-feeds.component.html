@@ -1,28 +1,29 @@
 <body>
-<div class="container-1">
-  <div class="box-1">
-    <app-clock></app-clock>
+  <app-airport-feed></app-airport-feed>
+  <div class="container-1">
+    <div class="box-1">
+      <app-clock></app-clock>
+    </div>
+    <div class="box-2">
+      <app-weather></app-weather>
+    </div>
+    <div class="box-3">
+      <h1><a [routerLink]="['/', 'admin', 'news']">E-Governance academy</a></h1>
+    </div>
   </div>
-  <div class="box-2">
-    <app-weather></app-weather>
-  </div>
-  <div class="box-3">
-    <h1><a [routerLink]="['/', 'admin', 'news']">E-Governance academy</a></h1>
-  </div>
-</div>
 
-<div class="container-2">
-  <div class="c2-box-1">
-    <app-video-feed></app-video-feed>
+  <div class="container-2">
+    <div class="c2-box-1">
+      <app-video-feed></app-video-feed>
+    </div>
+    <div class="c2-box-2">
+      <app-transport></app-transport>
+    </div>
   </div>
-  <div class="c2-box-2">
-    <app-transport></app-transport>
-  </div>
-</div>
+</body>
 
 <div class="container-3">
   <div class="c3-box-1">
     <app-news></app-news>
   </div>
 </div>
-</body>

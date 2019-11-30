@@ -9,6 +9,7 @@ import {RouterModule} from '@angular/router';
 import {ClockComponent} from './clock/clock.component';
 import {SafePipe} from './video-feed/safe.pipe';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
+import { AirportFeedComponent } from './airport-feed/airport-feed.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
     VideoFeedComponent,
     TransportComponent,
     ClockComponent,
-    SafePipe
+    SafePipe,
+    AirportFeedComponent
   ],
   imports: [
     RouterModule,

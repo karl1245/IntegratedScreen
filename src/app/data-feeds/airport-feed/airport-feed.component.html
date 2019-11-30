@@ -1,0 +1,12 @@
+<div *ngIf="isArrival">
+  <p>Arrivals</p>
+  <div *ngFor="let a of arrivals.slice(0, 10)">
+    <p>{{a.time}}, {{a.from}}, {{a.flights}}, {{a.airlines}}, {{a.information}}</p>
+  </div>
+</div>
+<div *ngIf="!isArrival">
+  <p>Departures</p>
+  <div *ngFor="let d of departures.slice(0, 10)">
+    <p>{{d.time}}, {{d.to}}, {{d.flights}}, {{d.airlines}}, {{d.information}}</p>
+  </div>
+</div>
