@@ -94,5 +94,5 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 body{
-  background-image: url("dist/IntegratedScreen/assets/taustad/pilt1.jpg");
+  background-image: url("../../assets/taustad/pilt1.jpg");
 }
