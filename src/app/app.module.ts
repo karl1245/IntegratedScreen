@@ -31,5 +31,3 @@ import {UpdateDataTimerService} from './shared/updateDataTimer.service';
 })
 export class AppModule {
 }
-
-platformBrowserDynamic().bootstrapModule(AppModule);

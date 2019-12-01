@@ -20,7 +20,7 @@ export class NewsComponent implements OnInit, OnDestroy {
   public timings: '500ms ease-in';
   public autoplay = true;
   public loop = true;
-  interval = '10000';
+  interval = 10000;
 
   constructor(private newsService: NewsService) { }
 
