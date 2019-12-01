@@ -20,7 +20,6 @@ h1, h2, h3, h4, h5, h6, p, a {
     display:flex;
     /*
     justify-content:flex-start;
-    justify-content:flex-end;
     justify-content:center;
     justify-content:space-around;
     */
@@ -79,6 +78,10 @@ h1, h2, h3, h4, h5, h6, p, a {
   order: 1;
 }
 
+.c2-box-1+.c2-box-2{
+  margin-left: 20vw;
+}
+
 .c2-box-2{
   flex:1;
   order: 2;
@@ -91,26 +94,5 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 body{
-  background: linear-gradient(3deg, #1e571a, #18545e);
-  background-size: 400% 400%;
-
-  -webkit-animation: Gradient 7s ease infinite;
-  -moz-animation: Gradient 7s ease infinite;
-  animation: Gradient 7s ease infinite;
-}
-
-@-webkit-keyframes Gradient {
-  0%{background-position:51% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:51% 0%}
-}
-@-moz-keyframes Gradient {
-  0%{background-position:51% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:51% 0%}
-}
-@keyframes Gradient {
-  0%{background-position:51% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:51% 0%}
+  background-image: url("dist/IntegratedScreen/assets/taustad/pilt1.jpg");
 }
