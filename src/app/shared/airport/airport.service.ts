@@ -39,11 +39,8 @@ export class AirportService {
    * Gets all arrivals or departures depending on user's choice.
    */
   getAirport() {
-    if (this.isArrival) {
       this.getArrivalsOutOfHTML();
-    } else {
       this.getDeparturesOutOfHTML();
-    }
   }
 
   /**
