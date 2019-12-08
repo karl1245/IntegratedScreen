@@ -76,10 +76,11 @@ h1, h2, h3, h4, h5, h6, p, a {
 .c2-box-1{
   flex:1;
   order: 1;
+  margin-top: 5vh;
 }
 
 .c2-box-1+.c2-box-2{
-  margin-left: 20vw;
+  margin-left: 5vw;
 }
 
 .c2-box-2{
