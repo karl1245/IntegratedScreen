@@ -11,7 +11,7 @@ import static junit.framework.TestCase.*;
 public class BasicTest extends TestHelper {
     /*
     @Test
-    public void testSaveNewsAPIKey() throws Exception{
+    public void testSaveNewsAPIKey() throws Exception {
         driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[1]")).click();
         WebElement newsAPIKeyField = driver.findElement(By.xpath("//*[@id=\"APIKey\"]"));
         WebElement saveNewsButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav-content/app-news-admin/div/form[1]/div/button/span"));
@@ -43,7 +43,7 @@ public class BasicTest extends TestHelper {
     weatherCityField.sendKeys("Tartu");
     WebElement saveCityButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav-content/app-weather-admin/div/form[2]/div/button"));
     saveCityButton.click();
-    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[5]/div"));
+    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[4]/div"));
     informationScreenButton.click();
     waitForPageLoaded();
     String imgSrc = driver.findElement(By.xpath("/html/body/app-root/app-data-feeds/body/div[1]/div[2]/app-weather/html/body/div[1]/div[2]/div/img")).getAttribute("src");
@@ -64,7 +64,7 @@ public class BasicTest extends TestHelper {
     weatherCityField.sendKeys("Tartu");
     WebElement saveCityButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav-content/app-weather-admin/div/form[2]/div/button"));
     saveCityButton.click();
-    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[5]/div"));
+    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[4]/div"));
     informationScreenButton.click();
     waitForPageLoaded();
     String imgSrc = driver.findElement(By.xpath("/html/body/app-root/app-data-feeds/body/div[1]/div[2]/app-weather/html/body/div[1]/div[2]/div/img")).getAttribute("src");
@@ -83,7 +83,7 @@ public class BasicTest extends TestHelper {
     videoLocationField.sendKeys("https://www.youtube.com/watch?v=Fdf5aTYRW0E&t=1534s");
     WebElement saveVideoButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav-content/app-video-admin/div/form/div/button/span"));
     saveVideoButton.click();
-    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[5]/div"));
+    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[4]/div"));
     informationScreenButton.click();
     WebElement video = driver.findElement(By.xpath("/html/body/app-root/app-data-feeds/body/div[2]/div[1]/app-video-feed/div/div/iframe"));
     waitForPageLoaded();
@@ -102,7 +102,7 @@ public class BasicTest extends TestHelper {
     videoLocationField.sendKeys("");
     WebElement saveVideoButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav-content/app-video-admin/div/form/div/button/span"));
     saveVideoButton.click();
-    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[5]/div"));
+    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[4]/div"));
     informationScreenButton.click();
     WebElement video = driver.findElement(By.xpath("/html/body/app-root/app-data-feeds/body/div[2]/div[1]/app-video-feed/div/div/iframe"));
     waitForPageLoaded();
@@ -120,7 +120,7 @@ public class BasicTest extends TestHelper {
     videoLocationField.sendKeys("https://www.youtube.com/watch?v=Fdf5aTYRW0E&t=1534s");
     WebElement saveVideoButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav-content/app-video-admin/div/form/div/button/span"));
     saveVideoButton.click();
-    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[5]/div"));
+    WebElement informationScreenButton = driver.findElement(By.xpath("/html/body/app-root/app-admin-screen/app-sidenav/mat-sidenav-container/mat-sidenav/div/mat-nav-list/a[4]/div"));
     informationScreenButton.click();
     WebElement video = driver.findElement(By.xpath("/html/body/app-root/app-data-feeds/body/div[2]/div[1]/app-video-feed/div/div/iframe"));
     waitForPageLoaded();
@@ -131,4 +131,5 @@ public class BasicTest extends TestHelper {
     driver.findElement(By.xpath("//button[@aria-label=\"Play\"]")).click();
     assertTrue(!driver.findElement(By.xpath("//button[@aria-label=\"Play\"]")).isDisplayed());
   }
+
 }

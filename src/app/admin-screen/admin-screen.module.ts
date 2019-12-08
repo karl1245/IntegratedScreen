@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CountryNamePipe} from '../shared/country-name.pipe';
-import {TransportAdminComponent} from './transport-admin/transport-admin.component';
+//import {TransportAdminComponent} from './transport-admin/transport-admin.component';
 import {MaterialModule} from '../material/material.module';
 import {SidenavComponent} from './sidenav/sidenav.component';
 import {SavedMessageComponent} from './saved-message/saved-message.component';
@@ -21,7 +21,7 @@ import {MatDialogModule} from '@angular/material';
     AdminScreenComponent,
     VideoAdminComponent,
     CountryNamePipe,
-    TransportAdminComponent,
+    //TransportAdminComponent,
     SidenavComponent,
     SavedMessageComponent,
     InfoModalComponent
@@ -41,7 +41,7 @@ import {MatDialogModule} from '@angular/material';
     AdminScreenComponent,
     VideoAdminComponent,
     CountryNamePipe,
-    TransportAdminComponent,
+    //TransportAdminComponent,
     SidenavComponent
   ],
   entryComponents: [

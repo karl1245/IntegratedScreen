@@ -6,7 +6,6 @@
       <class name="BasicTest">
         <methods>
           <include name="testSaveEmptyVideoLink"/>
-          <include name="testPlayVideo"/>
           <include name="testSaveWeatherKey"/>
           <include name="testSaveEmptyWeatherKey"/>
           <include name="testSaveVideoLink"/>
