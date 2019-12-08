@@ -10,33 +10,26 @@ import {Subscription, interval} from 'rxjs';
   styleUrls: ['./airport-feed.component.css']
 })
 export class AirportFeedComponent implements OnInit, OnDestroy {
-
   arrivals: Arrival[] = [];
   departures: Departure[] = [];
   isArrival = true;
-  arrivalSubject: Subscription;
-  departureSubject: Subscription;
+
+  airportSubject: Subscription;
 
   constructor(private airportService: AirportService) { }
 
-  //changes the arrival/departure every 10 sec
-  changeVariant(){
-    this.isArrival = !this.isArrival
-  }
-
   ngOnInit() {
-    interval(10000).subscribe(x => this.changeVariant());
-    this.arrivalSubject = this.airportService.airportArrivalSubject.subscribe(arrivals => {
-      this.arrivals = arrivals;
+    this.airportSubject = this.airportService.airportSubject.subscribe(airport => {
+      this.isArrival = airport.isArrival;
+      if(this.isArrival) {
+        this.arrivals = <Arrival[]>airport.flights;
+      } else {
+        this.departures = <Departure[]>airport.flights;
+      }
     });
-    this.departureSubject = this.airportService.airportDepartureSubject.subscribe(departures => {
-      this.departures = departures;
-    });
-    this.airportService.getAirport();
   }
 
   ngOnDestroy() {
-    this.arrivalSubject.unsubscribe();
-    this.departureSubject.unsubscribe();
+    this.airportSubject.unsubscribe();
   }
 }

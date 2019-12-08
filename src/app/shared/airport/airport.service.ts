@@ -4,43 +4,35 @@ import {HttpClient} from '@angular/common/http';
 import {map, take} from 'rxjs/operators';
 import {Arrival} from './arrival';
 import {Departure} from './departure';
-import {BehaviorSubject, Subject} from 'rxjs';
+import {BehaviorSubject, interval, Subject, Subscription, timer} from 'rxjs';
 
 /**
- * Service that handles Tallinn Airport related tasks.
+ * Service that handles Tallinn Airport related tasks. Gets info from Tallinn Airport home page.
  */
 @Injectable({
   providedIn: 'root'
 })
 export class AirportService {
-  private _isArrival = true;
+  isArrival = true;
 
-  airportArrivalSubject = new Subject<Arrival[]>();
-  airportDepartureSubject = new Subject<Departure[]>();
-
-  errorSubject = new BehaviorSubject<string>(null);
+  airportSubject = new Subject<{isArrival: boolean, flights: (Arrival[] | Departure[])}>();
+  timerSubject: Subscription;
 
   constructor(private storageService: StorageService,
               private http: HttpClient) {
-    this.isArrival = this.storageService.getAirport();
-    this.getAirport();
-  }
-
-  get isArrival(): boolean {
-    return this._isArrival;
-  }
-
-  set isArrival(value: boolean) {
-    this._isArrival = value;
-    this.storageService.saveAirport(value);
   }
 
   /**
-   * Gets all arrivals or departures depending on user's choice.
+   * ...
    */
   getAirport() {
-      this.getArrivalsOutOfHTML();
-      this.getDeparturesOutOfHTML();
+    this.timerSubject = interval(10000).subscribe(() => {
+      if (this.isArrival) {
+        this.getArrivalsOutOfHTML();
+      } else {
+        this.getDeparturesOutOfHTML();
+      }
+    });
   }
 
   /**
@@ -55,10 +47,11 @@ export class AirportService {
       })
     ).subscribe(
       arrivals => {
-        this.errorSubject.next(null);
-        this.airportArrivalSubject.next(arrivals);
+        this.airportSubject.next({isArrival: true, flights: arrivals});
+        this.isArrival = false;
+        console.log(arrivals);
       }, error => {
-        this.errorSubject.next(error.message + " - " + "Maybe the proxy server is not running?");
+        console.log(error.message + " - " + "Maybe the proxy server is not running?");
       });
   }
 
@@ -73,10 +66,10 @@ export class AirportService {
       })
     ).subscribe(
       departures => {
-        this.errorSubject.next(null);
-        this.airportDepartureSubject.next(departures);
+        this.airportSubject.next({isArrival: false, flights: departures});
+        this.isArrival = true;
       }, error => {
-        this.errorSubject.next(error.message + " - " + "Maybe the proxy server is not running?");
+        console.log(error.message + " - " + "Maybe the proxy server is not running?");
       });
   }
 

@@ -6,7 +6,6 @@ import {WeatherAdminComponent} from './admin-screen/weather-admin/weather-admin.
 import {DataFeedsComponent} from './data-feeds/data-feeds.component';
 import {VideoAdminComponent} from './admin-screen/video-admin/video-admin.component';
 import {TransportAdminComponent} from './admin-screen/transport-admin/transport-admin.component';
-import {AirportAdminComponent} from './admin-screen/airport-admin/airport-admin.component';
 
 const routes: Routes = [
   {
@@ -16,7 +15,6 @@ const routes: Routes = [
       {path: 'news', component: NewsAdminComponent},
       {path: 'weather', component: WeatherAdminComponent},
       {path: 'video', component: VideoAdminComponent},
-      {path: 'airport', component: AirportAdminComponent},
       {path: 'transport', component: TransportAdminComponent}
     ]
   },

@@ -13,7 +13,6 @@ import {SidenavComponent} from './sidenav/sidenav.component';
 import {SavedMessageComponent} from './saved-message/saved-message.component';
 import {InfoModalComponent} from './info-modal/info-modal.component';
 import {MatDialogModule} from '@angular/material';
-import { AirportAdminComponent } from './airport-admin/airport-admin.component';
 
 @NgModule({
   declarations: [
@@ -25,8 +24,7 @@ import { AirportAdminComponent } from './airport-admin/airport-admin.component';
     TransportAdminComponent,
     SidenavComponent,
     SavedMessageComponent,
-    InfoModalComponent,
-    AirportAdminComponent
+    InfoModalComponent
   ],
   imports: [
     RouterModule,
@@ -42,7 +40,6 @@ import { AirportAdminComponent } from './airport-admin/airport-admin.component';
     NewsAdminComponent,
     AdminScreenComponent,
     VideoAdminComponent,
-    AirportAdminComponent,
     CountryNamePipe,
     TransportAdminComponent,
     SidenavComponent
