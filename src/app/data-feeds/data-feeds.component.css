@@ -4,7 +4,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 @media(min-width:468px){
   .container-1{
-    height: 10%;
+    height: 8%;
     display:flex;
     /*
     align-items:flex-start;
@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6, p, a {
   }
 
   .container-2{
-    height: 70%;
+    height: 75%;
     display:flex;
     /*
     justify-content:flex-start;
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 .container-3{
-  height: 5%;
+  height: 10%;
   display:flex;
   flex-wrap:wrap;
   justify-content:space-between;

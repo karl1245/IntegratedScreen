@@ -10,6 +10,7 @@ import {Subscription, interval, timer} from 'rxjs';
   styleUrls: ['./airport-feed.component.css']
 })
 export class AirportFeedComponent implements OnInit, OnDestroy {
+  columns: string[] = ['Time', 'To/From', 'Flight', 'Airline', 'Info'];
   arrivals: Arrival[] = [];
   departures: Departure[] = [];
 
