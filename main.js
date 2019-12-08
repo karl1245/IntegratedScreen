@@ -44,27 +44,9 @@ app.on('ready', () => {
   createWindow();
 });
 
-// autoupdater
-autoUpdater.on('update-available', (info) => {
-  mainWindow.webContents.send('update_available');
-})
-autoUpdater.on('update-downloaded', (info) => {
-  mainWindow.webContents.send('update_downloaded');
-});
 
-app.on('window-all-closed', function () {
-  if (process.platform !== 'darwin') app.quit()
-})
 
-app.on('activate', function () {
-  if (mainWindow === null) createWindow()
-  autoUpdater.checkForUpdatesAndNotify();
-})
 
-ipcMain.on('app_version', (event) => {
-  event.sender.send('app_version', { version: app.getVersion() });
-});
 
-ipcMain.on('restart_app', () => {
-  autoUpdater.quitAndInstall();
-});
+
+

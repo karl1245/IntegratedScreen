@@ -6,31 +6,10 @@ h1, h2, h3, h4, h5, h6, p, a {
   color: #ffffff;
 }
 
-.container-1{
-  height: 10%;
-  display:flex;
-  /*
-  align-items:flex-start;
-  align-items:flex-end;
-  align-items:center;
-
-  flex-direction:column;
-  */
-}
-
-.box-1{
-  flex:1;
-  order:1;
-}
-
-.box-2{
-  flex:1;
-  order:2;
-}
-
 body{
   background: transparent;
   backdrop-filter: blur(5px);
+  overflow-y: hidden;
 }
 
 img {
@@ -39,3 +18,5 @@ img {
   float: left;
   padding-right: 50px;
 }
+
+
