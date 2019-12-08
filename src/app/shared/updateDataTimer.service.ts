@@ -1,4 +1,4 @@
-import {Subscription, timer} from 'rxjs';
+import {interval, Subscription} from 'rxjs';
 import {WeatherService} from './weather/weather.service';
 import {NewsService} from './news/news.service';
 import {Injectable} from '@angular/core';
@@ -12,6 +12,7 @@ import {AirportService} from './airport/airport.service';
 })
 export class UpdateDataTimerService {
   private timerSub: Subscription;
+  private timerSubAirport: Subscription;
 
   constructor (
     private weatherService: WeatherService,
@@ -20,16 +21,17 @@ export class UpdateDataTimerService {
   ) {}
 
   /**
-   * Starts the update timer.
+   * Starts the update timer. Updates news and weather every 30 minutes. Airport every 10 minutes.
    */
   startTimer() {
-    // TODO: maybe longer interval
-    // TODO: give this information to the user that it is updated after 30 min.
-    this.timerSub = timer(0, 1800000).subscribe(() => {
+    this.timerSub = interval( 1800000).subscribe(() => {
       this.newsService.getNews();
       this.weatherService.getWeather(this.weatherService.currentCity, this.weatherService.isMetric);
+      console.log("Updating news and weather!");
+    });
+    this.timerSubAirport = interval( 600000).subscribe(() => {
       this.airportService.getAirport();
-      console.log("Updating feeds!");
+      console.log("Updating airport times!");
     });
   }
 
@@ -38,6 +40,7 @@ export class UpdateDataTimerService {
    */
   stopTimer() {
     this.timerSub.unsubscribe();
+    this.timerSubAirport.unsubscribe();
   }
 }
 

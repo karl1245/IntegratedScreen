@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AirportService} from '../../shared/airport/airport.service';
 import {Arrival} from '../../shared/airport/arrival';
 import {Departure} from '../../shared/airport/departure';
-import {Subscription, interval} from 'rxjs';
+import {Subscription, interval, timer} from 'rxjs';
 
 @Component({
   selector: 'app-airport-feed',
@@ -12,24 +12,36 @@ import {Subscription, interval} from 'rxjs';
 export class AirportFeedComponent implements OnInit, OnDestroy {
   arrivals: Arrival[] = [];
   departures: Departure[] = [];
+
   isArrival = true;
 
-  airportSubject: Subscription;
+  arrivalsSub: Subscription;
+  departuresSub: Subscription;
+  timerSub: Subscription;
 
   constructor(private airportService: AirportService) { }
 
   ngOnInit() {
-    this.airportSubject = this.airportService.airportSubject.subscribe(airport => {
-      this.isArrival = airport.isArrival;
-      if(this.isArrival) {
-        this.arrivals = <Arrival[]>airport.flights;
-      } else {
-        this.departures = <Departure[]>airport.flights;
-      }
+    this.airportService.getAirport();
+
+    this.timerSub = interval( 10000).subscribe(() => {
+      this.isArrival = !this.isArrival;
+    });
+
+    this.arrivals = this.airportService.arrivals;
+    this.departures = this.airportService.departures;
+
+    this.arrivalsSub = this.airportService.arrivalsSubject.subscribe(arrivals => {
+        this.arrivals = arrivals;
+    });
+    this.departuresSub = this.airportService.departuresSubject.subscribe(departures => {
+      this.departures = departures;
     });
   }
 
   ngOnDestroy() {
-    this.airportSubject.unsubscribe();
+    this.arrivalsSub.unsubscribe();
+    this.departuresSub.unsubscribe();
+    this.timerSub.unsubscribe();
   }
 }

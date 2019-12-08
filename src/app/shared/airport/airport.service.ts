@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {map, take} from 'rxjs/operators';
 import {Arrival} from './arrival';
 import {Departure} from './departure';
-import {BehaviorSubject, interval, Subject, Subscription, timer} from 'rxjs';
+import {Subject} from 'rxjs';
 
 /**
  * Service that handles Tallinn Airport related tasks. Gets info from Tallinn Airport home page.
@@ -13,26 +13,22 @@ import {BehaviorSubject, interval, Subject, Subscription, timer} from 'rxjs';
   providedIn: 'root'
 })
 export class AirportService {
-  isArrival = true;
+  arrivals: Arrival[] = [];
+  departures: Departure[] = [];
 
-  airportSubject = new Subject<{isArrival: boolean, flights: (Arrival[] | Departure[])}>();
-  timerSubject: Subscription;
+  arrivalsSubject = new Subject<Arrival[]>();
+  departuresSubject = new Subject<Departure[]>();
 
   constructor(private storageService: StorageService,
               private http: HttpClient) {
   }
 
   /**
-   * ...
+   * Gets arrivals and departures from Tallinn airport home page
    */
   getAirport() {
-    this.timerSubject = interval(10000).subscribe(() => {
-      if (this.isArrival) {
-        this.getArrivalsOutOfHTML();
-      } else {
-        this.getDeparturesOutOfHTML();
-      }
-    });
+    this.getArrivalsOutOfHTML();
+    this.getDeparturesOutOfHTML();
   }
 
   /**
@@ -43,13 +39,12 @@ export class AirportService {
     this.http.get('http://localhost:3000/arrivals', {responseType: 'text'}).pipe(
       take(1),
       map(response => {
-        return this.getAorD(response);
+        return this.getAorD(response, true);
       })
     ).subscribe(
       arrivals => {
-        this.airportSubject.next({isArrival: true, flights: arrivals});
-        this.isArrival = false;
-        console.log(arrivals);
+        this.arrivals = arrivals;
+        this.arrivalsSubject.next(arrivals);
       }, error => {
         console.log(error.message + " - " + "Maybe the proxy server is not running?");
       });
@@ -62,12 +57,12 @@ export class AirportService {
     this.http.get('http://localhost:3000/departures', {responseType: 'text'}).pipe(
       take(1),
       map(response => {
-        return this.getAorD(response);
+        return this.getAorD(response, false);
       })
     ).subscribe(
       departures => {
-        this.airportSubject.next({isArrival: false, flights: departures});
-        this.isArrival = true;
+        this.departures = departures;
+        this.departuresSubject.next(departures);
       }, error => {
         console.log(error.message + " - " + "Maybe the proxy server is not running?");
       });
@@ -76,14 +71,15 @@ export class AirportService {
   /**
    * Reads Tallinn airport arrival or departure table into Arrival or Departure objects and returns an array of them.
    * @param response - html response from proxy server.
+   * @param isArrival - boolean whether to get arrivals or departures.
    */
-  private getAorD(response) {
+  private getAorD(response, isArrival: boolean) {
     let airportTable = [];
 
     const htmlString = response;
     var htmlObject = document.createElement('div');
     htmlObject.innerHTML = htmlString;
-    const table = this.getElementByAttribute("data-flights-type", this.isArrival ? "arrivals" : "departures", htmlObject);
+    const table = this.getElementByAttribute("data-flights-type", isArrival ? "arrivals" : "departures", htmlObject);
     const rows = table.querySelectorAll('.t-row:not(.hidden)');
 
     for(var i = 1; i < rows.length; i++) {
@@ -94,7 +90,7 @@ export class AirportService {
         const flights = this.getFlights(row);
         const airlines = this.getAirlines(row);
         const toFrom = this.getToFrom(row);
-        if(this.isArrival) {
+        if(isArrival) {
           const arrival = new Arrival(time, toFrom, flights, airlines, info);
           airportTable.push(arrival)
         } else {
