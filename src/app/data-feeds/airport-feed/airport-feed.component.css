@@ -1,9 +1,6 @@
 h1, h2, h3, h4, h5, h6, p, a {
   color: #ffffff;
+  text-shadow: black 0px 0px 10px;
+  font-size: 2.2vw;
 }
 
-body{
-  background: transparent;
-  backdrop-filter: blur(5px);
-  overflow-y: hidden;
-}

@@ -1,12 +1,88 @@
+
 <div *ngIf="isArrival">
-  <h1>Arrivals</h1>
-  <div *ngFor="let a of arrivals.slice(0, 10)">
-    <p>{{a.time}}, {{a.from}}, {{a.flights}}, {{a.airlines}}, {{a.information}}</p>
-  </div>
+
+  <h3>Arrivals</h3>
+
+  <mat-table [dataSource]="arrivals.slice(0,10)">
+
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+      <mat-cell *matCellDef="let arrivals">{{arrivals.time}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="from">
+      <mat-header-cell *matHeaderCellDef>From</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let arrivals">{{arrivals.from}}</mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="flights">
+      <mat-header-cell *matHeaderCellDef>Flight</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let arrivals">{{arrivals.flights}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="airlines">
+      <mat-header-cell *matHeaderCellDef>Airline</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let arrivals">{{arrivals.airlines}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="information">
+      <mat-header-cell *matHeaderCellDef>Info</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let arrivals">{{arrivals.information}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+
+  </mat-table>
+
+
 </div>
 <div *ngIf="!isArrival">
-  <h1>Departures</h1>
-  <div *ngFor="let d of departures.slice(0, 10)">
-    <p>{{d.time}}, {{d.to}}, {{d.flights}}, {{d.airlines}}, {{d.information}}</p>
-  </div>
+
+  <h3>Departures</h3>
+
+  <mat-table [dataSource]="departures.slice(0,10)">
+
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef>Time</mat-header-cell>
+      <mat-cell *matCellDef="let departures">{{departures.time}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="to">
+      <mat-header-cell *matHeaderCellDef>To</mat-header-cell>
+      <mat-cell class="description-cell"
+                *matCellDef="let departures">{{departures.to}}</mat-cell>
+
+    </ng-container>
+
+    <ng-container matColumnDef="flights">
+      <mat-header-cell *matHeaderCellDef>Flight</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let departures">{{departures.flights}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="airlines">
+      <mat-header-cell *matHeaderCellDef>Airline</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let departures">{{departures.airlines}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="information">
+      <mat-header-cell *matHeaderCellDef>Info</mat-header-cell>
+      <mat-cell class="duration-cell"
+                *matCellDef="let departures">{{departures.information}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+
+    <mat-row *matRowDef="let row; columns: displayedColumns2"></mat-row>
+
+  </mat-table>
+
 </div>

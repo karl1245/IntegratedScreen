@@ -10,6 +10,7 @@ import {ClockComponent} from './clock/clock.component';
 import {SafePipe} from './video-feed/safe.pipe';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import { AirportFeedComponent } from './airport-feed/airport-feed.component';
+import {MatTableModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -22,11 +23,12 @@ import { AirportFeedComponent } from './airport-feed/airport-feed.component';
     SafePipe,
     AirportFeedComponent
   ],
-  imports: [
-    RouterModule,
-    CommonModule,
-    MatCarouselModule
-  ],
+    imports: [
+        RouterModule,
+        CommonModule,
+        MatCarouselModule,
+        MatTableModule
+    ],
   exports: [
     WeatherComponent,
     NewsComponent,

@@ -25,7 +25,10 @@
       "output": "release",
       "buildResources": "dist"
     },
-    "asar": false,
+    "nsis": {
+      "createDesktopShortcut": "always"
+    },
+    "asar": true,
     "win": {
       "publish": [
         {
@@ -59,7 +62,7 @@
     "release": "build",
     "start": "ng serve",
     "publish": "electron-builder --linux --publish always",
-    "dist": "electron-builder -l",
+    "dist": "electron-builder -w",
     "postinstall": "install-app-deps",
     "build": "ng build --prod",
     "test": "ng test",
@@ -88,6 +91,7 @@
     "@types/mapbox-gl": "^0.54.4",
     "bootstrap": "^4.3.1",
     "electron-reload": "^1.5.0",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-updater": "^4.2.0",
     "https": "^1.0.0",
     "mapbox-gl": "^1.4.1",

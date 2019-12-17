@@ -1,7 +1,10 @@
 h1, h2, h3, h4, h5, h6, p, a {
   color: #ffffff;
+  font-size: 1.4vw;
+  text-shadow: black 0px 0px 10px;
 }
 
 body{
   background: transparent;
+  backdrop-filter: blur(5px);
 }
