@@ -1,22 +1,8 @@
-const {app, BrowserWindow, ipcMain} = require('electron')
-const {autoUpdater} = require("electron-updater");
+const {app, BrowserWindow} = require('electron')
 const url = require("url");
 const path = require("path");
 
-if (require('electron-squirrel-startup')) app.quit()
-// if first time install on windows, do not run application, rather
-// let squirrel installer do its work
-const setupEvents = require('./setup-events')
-if (setupEvents.handleSquirrelEvent()) {
-  process.exit()
-}
-
 let mainWindow;
-
-function sendStatusToWindow(text) {
-  log.info(text);
-  mainWindow.webContents.send('message', text);
-}
 
 function createWindow () {
   mainWindow = new BrowserWindow({

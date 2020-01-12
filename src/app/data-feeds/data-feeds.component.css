@@ -101,5 +101,10 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 body{
-  background-image: url("../../assets/taustad/pilt1.jpg");
+  background-image: url("../../assets/taustad/pilt4.jpg");
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin:auto;
+  padding:0;
 }
